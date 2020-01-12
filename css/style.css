@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;    
+    padding: 0;
+    background-color: black;
+}
+
+/*Home page*/
+
+/* Background image */
+div.main-page {
+    /* Filling the whole page */
+    height: 100vh;
+    display: block;
+    /* Getting scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: none;
+}
+.content {
+    font-family: 'Lobster', cursive;
+    color: white;
+}
+
+ /*Creating the nav buttons */
+ul {
+    float: right;
+    margin-top: 25px;
+}
+ul li{
+    display: inline;
+    list-style-type: none;
+    margin-right: 20px;
+}
+ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 7px 20px;
+    border: 1px solid white;
+}
+ul a.current-page{
+    color: black;
+    background-color: white;
+}
+ul li a:hover {
+    background-color: white;
+    color: black;
+    text-decoration: none;
+}
+
+/* Heading and the name */
+h1 {
+    font-family: 'PT Sans', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 6rem;
+    padding-top: 40vh;
+}
+#name {
+    font-size: 2rem;
+    padding-left: 65%;
+}
+/* End of Home page*/
+
+/* Projects page */
+
+/* Setting the background image */
+div#Projects {
+    /* Filling the whole page */
+    height: 100vh;
+    display: block;
+    /* Getting scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+div#Projects div div.col-tile {
+    background-color: burlywood;
+    color: brown;
+    padding: 5px 0px 20px 10px;
+    margin-bottom: 20px;
+}
+
+div.row {
+    padding-top: 30vh;
+}
+/* End of projects page */
+
+/* For big screens */
+@media (min-width:760px) {
+    div.main-page {
+        background-image: url("https://images.wallpaperscraft.com/image/blur_texture_misted_139577_2560x1600.jpg");
+    }
+    div#Projects {
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://images.wallpaperscraft.com/image/wood_surface_texture_boards_118443_2048x1152.jpg");
+    }
+}
+
+/* For smaller screens */
+/*@media (max-width:759px) {
+    div.main-page {
+        background-image: url("https://images.wallpaperscraft.com/image/wood_surface_texture_boards_118443_800x1280.jpg");
+    }
+    div#Projects {
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://images.wallpaperscraft.com/image/blur_texture_misted_139577_720x1280.jpg");
+    }
+}*/
+@media (max-width:759px) {
+    div.main-page {
+        background-image: url("https://images.wallpaperscraft.com/image/blur_texture_misted_139577_720x1280.jpg");
+    }
+    div#Projects {
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://images.wallpaperscraft.com/image/wood_surface_texture_boards_118443_800x1280.jpg");
+    }
+}
