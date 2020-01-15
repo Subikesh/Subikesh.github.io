@@ -1,0 +1,79 @@
+/*Home page*/
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body {
+    font-family: 'Lexend Mega', sans-serif;
+	margin-right: 30px
+}
+h1{
+    font-size: 1.75em;
+	position: relative;
+	top: 40px;
+	text-align: center;
+}
+/*For creating the sub headings boxes*/
+.sub-hd {
+	position: relative;
+	float: right;
+	top: 0;
+	width: 150px;
+	border: 1px solid black;
+}
+h2{
+    font-size: 1.25em;
+	text-align: center;
+}
+#html h2 {
+	background-color:blueviolet;
+	color:antiquewhite;
+}
+#css h2 {
+	background-color:lawngreen;
+}
+#js h2 {
+	background-color:burlywood;
+}
+
+/*For creating the layout for 3 sections*/
+section {
+	position: relative;
+	top: 50px;
+	float: left;
+}
+
+/*For creating boxes for each sections */
+div {
+	margin-left: 30px;
+	margin-top: 30px;
+	background-color: gray;
+	border: 1px solid black;
+	padding-left: 20px;
+}
+div:hover {
+	box-shadow: 0 0 21px rgba(66,66,66,.8);
+}
+p {
+	clear: right;
+	padding-right: 25px;
+}
+
+/*For Responsive design I have defined only thoe classes I've used in this HTML file*/
+/*For desktop*/
+@media(min-width : 992px) {
+	.cl-lg-4 {
+		width: 33.33%;
+	}
+}
+/*For tablets*/
+@media (min-width : 768px) and (max-width : 991px){
+	.cl-md-6 {
+		width: 50%;
+	}
+	.cl-md-12 {
+		width: 100%;
+	}
+}
+/*For small devices, it automatically stacks the boxes vertically, each bottom to another*/

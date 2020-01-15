@@ -37,9 +37,11 @@ ul li{
 }
 ul li a {
     color: white;
-    text-decoration: none;
     padding: 7px 20px;
+    text-decoration: none;
     border: 1px solid white;
+    transition: color 1s ease;
+    transition: background 1s ease;
 }
 ul a.current-page{
     color: black;
@@ -80,8 +82,17 @@ div#Projects {
 div#Projects div div.col-tile {
     background-color: burlywood;
     color: brown;
-    padding: 5px 0px 20px 10px;
+    padding: 5px 10px 20px 10px;
+    height: 300px;
     margin-bottom: 20px;
+}
+
+div#Projects div a>div.col-tile:hover {
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.59), 0 4px 8px 0 rgba(255, 0, 0, 0.59);
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 div.row {
