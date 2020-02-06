@@ -73,6 +73,7 @@ h1 {
 div#Projects {
     /* Filling the whole page */
     height: 100vh;
+    width: 100vw;
     display: block;
     /* Getting scrolling effect */
     background-attachment: fixed;
@@ -87,7 +88,7 @@ div#Projects div div.col-tile {
     margin-bottom: 20px;
 }
 
-div#Projects div a>div.col-tile:hover {
+div#Projects div div a>div.col-tile:hover {
     box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.59), 0 4px 8px 0 rgba(255, 0, 0, 0.59);
 }
 
@@ -97,6 +98,8 @@ a:hover {
 
 div.row {
     padding-top: 30vh;
+    margin-left: auto;
+    margin-right: auto;
 }
 /* End of projects page */
 
