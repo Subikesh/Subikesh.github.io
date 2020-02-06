@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    padding: 1.7%;
+    background-color: black;
+    color: whitesmoke;
+}
+#main {
+    background-color: rgb(56, 56, 56);
+    padding: 1.7%;
+}
+#heading {
+    width: 30vw;
+    float: left;
+    margin-top: 60px;
+    text-align: center;
+
+}
+#title {
+    font-family: 'Rubik', sans-serif;
+    font-size: 4em;
+}
+#image {
+    min-height: 300px;
+    max-width: 955px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 98%;
+}
+#img-div {
+    float: right;
+    width: 58vw;
+    text-align: center;
+    background-color: black;
+    border: 10px solid black;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+hr {
+    width: 100%;
+    background-color: rgb(65, 65, 65);
+}
+#tribute-info {
+    margin: 0px auto 60px auto;
+    font-size: 1.5em;
+    max-width: 600px;
+}
+footer {
+    font-size: 1.5em;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    color: rgb(255, 153, 0);
+}
+@media(max-width: 860px) {
+    #heading {
+        width: 90vw;
+        margin: auto;
+    }
+    #image {
+        width: 98%;
+        margin: auto;
+    }
+    #img-div {
+        width: 90vw;
+    }
+}
