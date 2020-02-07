@@ -1,0 +1,19 @@
+body {
+    background-color: rgb(75, 75, 75);
+    color: lightgrey;
+}
+#content {
+    background-color: black;
+    width: 700px;
+    padding: 10px 3vw 3vw 30px;
+    margin: 20px auto 0px auto;
+}
+header {
+    text-align: center;
+}
+input {
+    margin-bottom: 15px;
+}
+label {
+    display: block;
+}

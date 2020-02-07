@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="content">
+            <header>    
+                <h1 id="title">How You Doin'?</h1>
+                <p id="description">This is a short Survey form about the famous TV Series FRIENDS.</p>
+            </header>
+            <div id="main-survey">
+                <form id="survey-form">
+                    <label for="name" id="name-label"><p>Name</p></label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+
+                    <label for="email" id="email-label"><p>Email</p></label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+
+                    <label for="number" id="number-label"><p>Age</p></label>
+                    <input type="number" id="number" min="5" max="60" placeholder="Your age here">
+
+                    <p>Who is your favorite charector in FRIENDS?</p>
+                    <select name="best-charector" id="dropdown">
+                        <option selected disabled value>Select a charecter</option>
+                        <option value="Phoebe">Phoebe Buffay</option>
+                        <option value="Chandler Bing">Chandler Bing </option>
+                        <option value="Joey Tribbiani">Joey Tribbiani </option>
+                        <option value="Monica Geller">Monica Geller </option>
+                        <option value="Ross Geller">Ross Geller </option>
+                        <option value="Rachel Green">Rachel Green </option>
+                        <option value="other">One of many others</option>
+                    </select>
+                    
+                    <p>Would you recommend your friend to watch FRIEND?</p>
+                    <label for="definitely"><input type="radio" name="recommend" id="definitely" value="yes" checked>Definitely</label>
+                    <label for="maybe"><input type="radio" name="recommend" id="maybe" value="maybe">Maybe</label>
+                    <label for="nope"><input type="radio" name="recommend" id="nope" value="no">Not Sure</label>
+
+                    <p>Which couples did you like throughout the show?</p>
+                    <label for="rach-ross"><input type="checkbox" name="couples" id="rach-ross" value="rr">Rachel and Ross</label>
+                    <label for="rach-joey"><input type="checkbox" name="couples" id="rach-joey" value="rj">Rachel and Joey</label>
+                    <label for="mon-chan"><input type="checkbox" name="couples" id="mon-chan" value="mc">Monica and Chandler</label>
+                    <label for="jan-chan"><input type="checkbox" name="couples" id="jan-chan" value="jc">Janice and Chandler</label>
+                    <label for="mon-rich"><input type="checkbox" name="couples" id="mon-rich" value="mr">Monica and Richard</label>
+                    <label for="phoe-mark"><input type="checkbox" name="couples" id="phoe-mark" value="pm">Phoebe and Mark</label>
+                    <label for="none"><input type="checkbox" name="couples" id="none" value="nope">None</label>
+                    
+                    <p>Your brief review about the series...</p>
+                    <textarea name="review" id="review" cols="30" rows="10" placeholder="Enter your review here..."></textarea>
+
+                    <br>
+                    <button type="submit" id="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <!-- Linking the project test js file from freecodecamp -->
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    </body>
+</html>
