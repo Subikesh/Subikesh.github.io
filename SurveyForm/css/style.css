@@ -1,15 +1,28 @@
 body {
-    background-color: rgb(75, 75, 75);
+    /* background-color: rgb(75, 75, 75); */
+    background-image: linear-gradient(
+        115deg,
+        rgba(158, 65, 58, 0.8),
+        rgba(206, 184, 136, 0.7)
+      ),
+      url("https://wallpaperaccess.com/full/782186.jpg");
+      background-position: center;
+      background-size: cover;
     color: lightgrey;
 }
 #content {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.644);
     width: 700px;
     padding: 10px 3vw 3vw 30px;
     margin: 20px auto 0px auto;
 }
 header {
     text-align: center;
+    font-family: 'Permanent Marker', cursive;
+}
+#main-survey p{
+    font-family: 'Cedarville Cursive', cursive;
+    font-size: 1.5em;
 }
 input {
     margin-bottom: 15px;
