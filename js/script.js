@@ -1,24 +1,14 @@
-document.addEventListener(DOMContentLoaded, function() {
-    var title = window.ajaxUtils.sendGetRequest()
-        
-    // Convenience function for inserting innerHTML for 'select'
-    var insertHtml = function (selector, html) {
-        var targetElem = document.querySelector(selector);
-        targetElem.innerHTML = html;
-    };
-
-    // Return substitute of '{{propName}}'
-    // with propValue in given 'string'
-    var insertProperty = function (string, propName, propValue) {
-        var propToReplace = "{{" + propName + "}}";
-            string = string
-                .replace(new RegExp(propToReplace, "g"), propValue);
-            return string;
-    };
-
-    var changeTitle = function(divContent) {
-        insertHtml(divContent, title)
+// Function to pull up and push back the card for resume
+document.addEventListener("click", function(event) {
+    var card = document.getElementById("resume-card");
+    var title = document.querySelector(".card-title");
+    console.log("Inside fn", event)
+    if (card.contains(event.target)) {
+        card.classList.add("active");
+        title.classList.add("display-3");
     }
-
-    window.ajaxUtils.sendGetRequest("../Project-tile.js", change-tile(divContent))
+    else {
+        card.classList.remove("active");
+        title.classList.remove("display-3");
+    }
 });

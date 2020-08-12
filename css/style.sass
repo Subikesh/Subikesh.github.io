@@ -1,0 +1,51 @@
+// Main Page
+$bgColor: rgb(110, 60, 224)
+
+body
+    background-image: linear-gradient(80deg, white 48%, $bgColor)
+    height: 100vh
+
+.name-header 
+    margin-top: 35vh
+
+.non-overflow
+    white-space: nowrap
+
+// Resume Card 
+.center-card 
+    background-color: rgb(184, 184, 184)
+    position: fixed
+    height: 70vh
+    width: 35px
+    top: 10vh    
+    right: 0px
+    border-radius: 30px 0 0 30px
+    box-shadow: rgb(97, 97, 97) 2px 2px 5px 5px
+    color: rgba(0, 0, 0, 0)
+    transition-duration: 0.5s
+    cursor: pointer
+
+    .card-title 
+        transform: rotate(-90deg)
+        margin-top: 36vh
+        color: rgba(0, 0, 0, 1)
+        transition-duration: 0.5s
+
+.center-card.active 
+    background-color: rgb(184, 184, 184)
+    position: float
+    top: 10vh
+    height: 80vh
+    width: 80vw
+    right: 10vw
+    border-radius: 0
+    color: rgba(0, 0, 0, 1)
+    transition-duration: 0.5s
+    cursor: auto
+
+    .card-title 
+        transform: rotate(0deg)
+        text-align: center
+        margin-top: 30px
+        transition-duration: 0.5s
+

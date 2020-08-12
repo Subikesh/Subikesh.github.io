@@ -1,132 +1,53 @@
-* {
-    box-sizing: border-box;
-}
 body {
-    margin: 0;    
-    padding: 0;
-    background-color: black;
+  background-image: linear-gradient(80deg, white 48%, #6e3ce0);
+  height: 100vh;
 }
 
-/*Home page*/
-
-/* Background image */
-div.main-page {
-    /* Filling the whole page */
-    height: 100vh;
-    display: block;
-    /* Getting scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    background-repeat: none;
-}
-.content {
-    font-family: 'Lobster', cursive;
-    color: white;
+.name-header {
+  margin-top: 35vh;
 }
 
- /*Creating the nav buttons */
-ul {
-    float: right;
-    margin-top: 25px;
-}
-ul li{
-    display: inline;
-    list-style-type: none;
-    margin-right: 20px;
-}
-ul li a {
-    color: white;
-    padding: 7px 20px;
-    text-decoration: none;
-    border: 1px solid white;
-    transition: color 1s ease;
-    transition: background 1s ease;
-}
-ul a.current-page{
-    color: black;
-    background-color: white;
-}
-ul li a:hover {
-    background-color: white;
-    color: black;
-    text-decoration: none;
+.non-overflow {
+  white-space: nowrap;
 }
 
-/* Heading and the name */
-h1 {
-    font-family: 'PT Sans', sans-serif;
-    color: white;
-    text-align: center;
-    font-size: 6rem;
-    padding-top: 40vh;
+.center-card {
+  background-color: #b8b8b8;
+  position: fixed;
+  height: 70vh;
+  width: 35px;
+  top: 10vh;
+  right: 0px;
+  border-radius: 30px 0 0 30px;
+  box-shadow: #616161 2px 2px 5px 5px;
+  color: rgba(0, 0, 0, 0);
+  transition-duration: 0.5s;
+  cursor: pointer;
 }
-#name {
-    font-size: 2rem;
-    padding-left: 65%;
-}
-/* End of Home page*/
-
-/* Projects page */
-
-/* Setting the background image */
-div#Projects {
-    /* Filling the whole page */
-    height: 100vh;
-    width: 100vw;
-    display: block;
-    /* Getting scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-}
-div#Projects div div.col-tile {
-    background-color: burlywood;
-    color: brown;
-    padding: 5px 10px 20px 10px;
-    height: 300px;
-    margin-bottom: 20px;
+.center-card .card-title {
+  transform: rotate(-90deg);
+  margin-top: 36vh;
+  color: black;
+  transition-duration: 0.5s;
 }
 
-div#Projects div div a>div.col-tile:hover {
-    box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.59), 0 4px 8px 0 rgba(255, 0, 0, 0.59);
+.center-card.active {
+  background-color: #b8b8b8;
+  position: float;
+  top: 10vh;
+  height: 80vh;
+  width: 80vw;
+  right: 10vw;
+  border-radius: 0;
+  color: black;
+  transition-duration: 0.5s;
+  cursor: auto;
+}
+.center-card.active .card-title {
+  transform: rotate(0deg);
+  text-align: center;
+  margin-top: 30px;
+  transition-duration: 0.5s;
 }
 
-a:hover {
-    text-decoration: none;
-}
-
-div.row {
-    padding-top: 30vh;
-    margin-left: auto;
-    margin-right: auto;
-}
-/* End of projects page */
-
-/* For big screens */
-@media (min-width:760px) {
-    div.main-page {
-        background-image: url("https://images.wallpaperscraft.com/image/blur_texture_misted_139577_2560x1600.jpg");
-    }
-    div#Projects {
-        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://images.wallpaperscraft.com/image/wood_surface_texture_boards_118443_2048x1152.jpg");
-    }
-}
-
-/* For smaller screens */
-/*@media (max-width:759px) {
-    div.main-page {
-        background-image: url("https://images.wallpaperscraft.com/image/wood_surface_texture_boards_118443_800x1280.jpg");
-    }
-    div#Projects {
-        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://images.wallpaperscraft.com/image/blur_texture_misted_139577_720x1280.jpg");
-    }
-}*/
-@media (max-width:759px) {
-    div.main-page {
-        background-image: url("https://images.wallpaperscraft.com/image/blur_texture_misted_139577_720x1280.jpg");
-    }
-    div#Projects {
-        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://images.wallpaperscraft.com/image/wood_surface_texture_boards_118443_800x1280.jpg");
-    }
-}
+/*# sourceMappingURL=style.css.map */
