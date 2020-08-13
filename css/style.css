@@ -57,8 +57,8 @@ body {
 
 #info-card {
   position: fixed;
-  top: 5vh;
-  right: 5px;
+  top: 20vh;
+  right: 3px;
   height: 70px;
   width: 50px;
   background-color: inherit;
@@ -67,7 +67,7 @@ body {
 }
 
 #resume-card {
-  top: 13.5vh;
+  top: 28.5vh;
 }
 
 #resume-card.active {
@@ -75,7 +75,7 @@ body {
 }
 
 #about-card {
-  top: 22vh;
+  top: 37vh;
 }
 
 #about-card.active {
@@ -83,7 +83,7 @@ body {
 }
 
 #project-card {
-  top: 30.5vh;
+  top: 45.5vh;
 }
 
 #project-card.active {
@@ -91,18 +91,18 @@ body {
 }
 
 #contact-card {
-  top: 39vh;
+  top: 54vh;
 }
 
 #contact-card.active {
   top: 10vh;
 }
 
-.center-card:hover {
+.center-card:hover, .hovered {
   width: 200px;
   overflow: hidden;
 }
-.center-card:hover .card-title {
+.center-card:hover .card-title, .hovered .card-title {
   display: inline-block;
 }
 
