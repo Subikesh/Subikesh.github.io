@@ -1,50 +1,117 @@
 body {
-  background-image: linear-gradient(80deg, white 48%, #6e3ce0);
+  background-image: linear-gradient(80deg, #38a7f1 5%, whitesmoke 20%, whitesmoke 60%, #38a7f1);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
   height: 100vh;
+  overflow: auto;
 }
 
 .name-header {
-  margin-top: 35vh;
+  padding-top: 35vh;
+  width: -40px;
 }
 
+@media only screen and (max-width: 620px) {
+  .name-header .display-1 {
+    font-size: 5rem;
+  }
+  .name-header .display-4 {
+    font-size: 3rem;
+  }
+}
 .non-overflow {
   white-space: nowrap;
 }
 
+.icons, .center-card.active .icons {
+  color: white;
+  display: inline;
+  font-size: 2rem;
+  padding-left: 10px;
+  padding-top: 20px;
+}
+
 .center-card, .center-card.active {
-  background-color: #b8b8b8;
+  background-color: #691e01;
   position: fixed;
-  top: 10vh;
   right: 0px;
-  height: 70vh;
-  width: 35px;
-  border-radius: 30px 0 0 30px;
+  height: 70px;
+  width: 55px;
+  border-radius: 10px 0 0 10px;
   box-shadow: #616161 2px 2px 5px 5px;
-  color: rgba(0, 0, 0, 0);
+  color: rgba(255, 255, 255, 0);
   transition-duration: 0.5s;
   cursor: pointer;
+  display: inline;
 }
 .center-card .card-title {
-  transform: rotate(-90deg);
-  margin-top: 36vh;
-  color: black;
+  display: none;
+  padding-left: 10px;
+  padding-top: 20px;
+  color: #ffffff;
   transition-duration: 0.5s;
+}
+.center-card p, .center-card.active p {
+  display: none;
+}
+
+#info-card {
+  position: fixed;
+  top: 5vh;
+  right: 5px;
+  height: 70px;
+  width: 50px;
+  background-color: inherit;
+  box-shadow: 0;
+  cursor: pointer;
+}
+
+#resume-card {
+  top: 13.5vh;
+}
+
+#about-card {
+  top: 22vh;
+}
+
+#project-card {
+  top: 30.5vh;
+}
+
+#contact-card {
+  top: 39vh;
+}
+
+.center-card:hover {
+  width: 200px;
+  overflow: hidden;
+}
+.center-card:hover .card-title {
+  display: inline-block;
 }
 
 .center-card.active {
+  background-image: linear-gradient(45deg, #e4e133 5%, #691e01 70%);
   top: 10vh;
   right: 10vw;
   height: 80vh;
   width: 80vw;
   border-radius: 0;
-  color: black;
+  color: #ffffff;
   cursor: auto;
 }
+.center-card.active .icons {
+  display: none;
+}
 .center-card.active .card-title {
-  transform: rotate(0deg);
   text-align: center;
   margin-top: 30px;
   transition-duration: 0.5s;
+  display: block;
+}
+.center-card.active p {
+  display: inline;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -2,7 +2,6 @@
 document.addEventListener("click", function(event) {
     var card = document.getElementById("resume-card");
     var title = document.querySelector(".card-title");
-    console.log("Inside fn", event)
     if (card.contains(event.target)) {
         card.classList.add("active");
         title.classList.add("display-3");
