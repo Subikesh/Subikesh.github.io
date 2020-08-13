@@ -17,7 +17,6 @@ body
 
 .name-header 
     padding-top: 35vh
-    width: -40px
 
 // To prevent the card overlap the heading
 @media only screen and (max-width: 620px)
@@ -31,7 +30,6 @@ body
     white-space: nowrap
 
 // Pop-up Card     
-
 .icons
         color: white
         display: inline
@@ -76,6 +74,8 @@ body
     ##{list.nth($cards, $card)}-card
         $top-padding: ($top-padding + (8.5vh * $card))
         top: $top-padding
+    ##{list.nth($cards, $card)}-card.active 
+        top: 10vh
 
 .center-card:hover
     width: 200px 

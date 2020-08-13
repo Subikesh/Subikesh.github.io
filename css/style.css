@@ -9,7 +9,6 @@ body {
 
 .name-header {
   padding-top: 35vh;
-  width: -40px;
 }
 
 @media only screen and (max-width: 620px) {
@@ -71,16 +70,32 @@ body {
   top: 13.5vh;
 }
 
+#resume-card.active {
+  top: 10vh;
+}
+
 #about-card {
   top: 22vh;
+}
+
+#about-card.active {
+  top: 10vh;
 }
 
 #project-card {
   top: 30.5vh;
 }
 
+#project-card.active {
+  top: 10vh;
+}
+
 #contact-card {
   top: 39vh;
+}
+
+#contact-card.active {
+  top: 10vh;
 }
 
 .center-card:hover {
