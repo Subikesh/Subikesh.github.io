@@ -3,17 +3,19 @@
 $bgColor: rgb(56, 167, 241)
 $cardColors: #f78888, #f3d250, #90ccf4, #5da2d5
 $top-padding: 20vh
-$cards: resume, about, project, contact
+$cards: resume, project, about, contact
 
 // Main Page
 
 body
-    background-image: linear-gradient(80deg, $bgColor 5%, #ececec 20%, #ececec 60%, $bgColor)
+    // background-image: linear-gradient(80deg, $bgColor 5%, #ececec 20%, #ececec 60%, $bgColor)
+    background: linear-gradient(80deg, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0)), url("/bgImage.jpg")
     background-repeat: no-repeat
     background-size: cover
     margin: 0
     height: 100vh
     overflow: auto
+    color: white
 
 .name-header 
     padding-top: 35vh
@@ -48,9 +50,9 @@ body
     white-space: nowrap
 
 .ruler
-    border: 1px solid rgb(100, 100, 100)
+    border: 1px solid rgb(180, 180, 180)
     position: absolute 
-    top: 8vw
+    top: 9vw
     left: 60vw
     height: 0
     animation: drawLine-v 1.5s     
@@ -62,7 +64,7 @@ body
         padding-top: 25vh
     .ruler
         top: 65vh
-        left: 8vw
+        left: 9vw
         width: 0
         height: 0        
         animation: drawLine-h 1.5s
@@ -138,17 +140,18 @@ body
     100%    
         transform: translateX(0%)
 
-@media only screen and ( max-height: 800px )
+// Reducing pop-up icons size for small displays
+@media only screen and (max-height: 800px)
     .center-card
-        height: 60px
-        width: 55px
+        height: 70px
+        width: 75px
         margin-top: -20px
         .card-title
             padding-top: 15px
 
     .icons, #info-card
         font-size: 1.6rem
-        padding: 18px 0px 0px 18px
+        padding: 20px 0px 0px 18px
     #info-card
         right: 0px
         width: 75px
@@ -176,10 +179,6 @@ body
     color: #000
     cursor: auto
     animation-fill-mode: forwards
-
-    .icons
-        @extend .icons
-        display: none
 
     .card-title 
         text-align: center

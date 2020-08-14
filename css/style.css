@@ -1,10 +1,11 @@
 body {
-  background-image: linear-gradient(80deg, #38a7f1 5%, #ececec 20%, #ececec 60%, #38a7f1);
+  background-image: linear-gradient(80deg, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0)), url("/bgImage.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
   height: 100vh;
   overflow: auto;
+  color: white;
 }
 
 .name-header {
@@ -46,9 +47,9 @@ body {
 }
 
 .ruler {
-  border: 1px solid #646464;
+  border: 1px solid #b4b4b4;
   position: absolute;
-  top: 8vw;
+  top: 9vw;
   left: 60vw;
   height: 0;
   animation: drawLine-v 1.5s;
@@ -62,7 +63,7 @@ body {
 
   .ruler {
     top: 65vh;
-    left: 8vw;
+    left: 9vw;
     width: 0;
     height: 0;
     animation: drawLine-h 1.5s;
@@ -79,7 +80,7 @@ body {
     height: 70vh;
   }
 }
-.icons, .center-card.active .icons {
+.icons {
   color: white;
   display: inline;
   font-size: 2rem;
@@ -133,7 +134,7 @@ body {
   margin-top: 0;
 }
 
-#about-card {
+#project-card {
   top: 20vh;
   margin-top: 206px;
   background-color: #f3d250;
@@ -143,12 +144,12 @@ body {
   animation-fill-mode: forwards;
 }
 
-#about-card.active {
+#project-card.active {
   top: 10vh;
   margin-top: 0;
 }
 
-#project-card {
+#about-card {
   top: 20vh;
   margin-top: 309px;
   background-color: #90ccf4;
@@ -158,7 +159,7 @@ body {
   animation-fill-mode: forwards;
 }
 
-#project-card.active {
+#about-card.active {
   top: 10vh;
   margin-top: 0;
 }
@@ -191,17 +192,17 @@ body {
 }
 @media only screen and (max-height: 800px) {
   .center-card, .center-card.active {
-    height: 60px;
-    width: 55px;
+    height: 70px;
+    width: 75px;
     margin-top: -20px;
   }
   .center-card .card-title {
     padding-top: 15px;
   }
 
-  .icons, .center-card.active .icons, #info-card {
+  .icons, #info-card {
     font-size: 1.6rem;
-    padding: 18px 0px 0px 18px;
+    padding: 20px 0px 0px 18px;
   }
 
   #info-card {
@@ -213,11 +214,11 @@ body {
     margin-top: 77px;
   }
 
-  #about-card {
+  #project-card {
     margin-top: 154px;
   }
 
-  #project-card {
+  #about-card {
     margin-top: 231px;
   }
 
@@ -242,9 +243,6 @@ body {
   color: #000;
   cursor: auto;
   animation-fill-mode: forwards;
-}
-.center-card.active .icons {
-  display: none;
 }
 .center-card.active .card-title {
   text-align: center;

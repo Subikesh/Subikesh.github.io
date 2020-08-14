@@ -5,7 +5,7 @@ document.addEventListener("click", function(event) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
     // info button functionality
-    var cards = ["resume", "about", "project", "contact"]
+    var cards = ["resume", "project", "about", "contact"]
     var info = document.getElementById("info-card");
 
     // Trigger a hover event for cards[i]
