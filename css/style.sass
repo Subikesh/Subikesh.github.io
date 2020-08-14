@@ -1,12 +1,12 @@
 // Variables
 @use 'sass:list'
 $bgColor: rgb(56, 167, 241)
-$resumebg1: #e4e133
-$resumebg2: rgb(105, 30, 1)
+$cardColors: #f78888, #f3d250, #90ccf4, #5da2d5, #ececec
 $top-padding: 20vh
 $cards: resume, about, project, contact
 
 // Main Page
+
 body
     background-image: linear-gradient(80deg, $bgColor 5%, whitesmoke 20%, whitesmoke 60%, $bgColor)
     background-repeat: no-repeat
@@ -17,9 +17,25 @@ body
 
 .name-header 
     padding-top: 35vh
+    max-width: 520px
+    .display-4
+        opacity: 0
+        animation: fadeineffect 1s
+        animation-fill-mode: forwards
+    .display-1
+        opacity: 0
+        animation: fadeineffect 1s 
+        animation-delay: 1s
+        animation-fill-mode: forwards
+
+@keyframes fadeineffect
+    0%
+        opacity: 0
+    100%
+        opacity: 1
 
 // To prevent the card overlap the heading
-@media only screen and (max-width: 620px)
+@media only screen and (max-width: 660px)
     .name-header
         .display-1
             font-size: 5rem
@@ -29,26 +45,43 @@ body
 .non-overflow
     white-space: nowrap
 
+.ruler
+    border: 1px solid rgb(161, 161, 161)
+    position: absolute 
+    top: 8vw
+    left: 60vw
+    height: 70vh
+
+// Making ruler horizontal for < mid screens
+@media only screen and (max-width: 992px)
+    .name-header
+        padding-top: 25vh
+    .ruler
+        top: 65vh
+        left: 8vw
+        width: 70vw
+        height: 0
+
+// Main Page ends
+
 // Pop-up Card     
+
 .icons
         color: white
         display: inline
         font-size: 2rem
-        padding-left: 10px
-        padding-top: 20px
+        padding-left: 25px
+        padding-top: 38px
 
 .center-card 
-    background-color: $resumebg2
     position: fixed
     right: 0px
-    height: 70px
-    width: 55px
-    border-radius: 10px 0 0 10px
-    box-shadow: rgb(97, 97, 97) 2px 2px 5px 5px
-    color: rgba(255, 255, 255, 0)
+    height: 100px
+    width: 85px
+    border-radius: 5px 0 0 5px
     transition-duration: 0.5s
     cursor: pointer
-    display: inline
+    display: inline    
 
     .card-title 
         display: none
@@ -63,8 +96,8 @@ body
     position: fixed
     top: $top-padding
     right: 3px
-    height: 70px
-    width: 50px
+    height: 100px
+    width: 85px
     background-color: inherit
     box-shadow: 0
     cursor: pointer
@@ -72,10 +105,31 @@ body
 // Positioning the card elements with a padding increase
 @for $card from 1 through 4
     ##{list.nth($cards, $card)}-card
-        $top-padding: ($top-padding + (8.5vh * $card))
         top: $top-padding
+        margin-top: 103px * $card
+        background-color: #{list.nth($cardColors, $card)}
     ##{list.nth($cards, $card)}-card.active 
         top: 10vh
+        margin-top: 0
+
+@media only screen and ( max-height: 800px )
+    .center-card
+        height: 60px
+        width: 55px
+        margin-top: -20px
+        .card-title
+            padding-top: 15px
+
+    .icons, #info-card
+        font-size: 1.6rem
+        padding: 18px 0px 0px 18px
+    #info-card
+        right: 0px
+        width: 75px
+
+    @for $card from 1 through 4
+        ##{list.nth($cards, $card)}-card
+            margin-top: 77px * $card
 
 .center-card:hover, .hovered
     width: 200px 
@@ -83,15 +137,16 @@ body
     .card-title
         display: inline-block
 
+// Card after opening it
 .center-card.active 
     @extend .center-card
-    background-image: linear-gradient(45deg, $resumebg1 5%, $resumebg2 70%)
+    // background-image: linear-gradient(45deg, $resumebg 5%, $resumebg 70%)
     top: 10vh
     right: 10vw
     height: 80vh
     width: 80vw
     border-radius: 0
-    color: #ffffff
+    color: #000
     cursor: auto
 
     .icons
@@ -101,10 +156,10 @@ body
     .card-title 
         text-align: center
         margin-top: 30px
+        color: #000
         transition-duration: 0.5s
         display: block
     p
         display: inline
 
-
-
+// Pop-up card end

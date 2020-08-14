@@ -9,9 +9,29 @@ body {
 
 .name-header {
   padding-top: 35vh;
+  max-width: 520px;
+}
+.name-header .display-4 {
+  opacity: 0;
+  animation: fadeineffect 1s;
+  animation-fill-mode: forwards;
+}
+.name-header .display-1 {
+  opacity: 0;
+  animation: fadeineffect 1s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
 }
 
-@media only screen and (max-width: 620px) {
+@keyframes fadeineffect {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media only screen and (max-width: 660px) {
   .name-header .display-1 {
     font-size: 5rem;
   }
@@ -23,23 +43,40 @@ body {
   white-space: nowrap;
 }
 
+.ruler {
+  border: 1px solid #a1a1a1;
+  position: absolute;
+  top: 8vw;
+  left: 60vw;
+  height: 70vh;
+}
+
+@media only screen and (max-width: 992px) {
+  .name-header {
+    padding-top: 25vh;
+  }
+
+  .ruler {
+    top: 65vh;
+    left: 8vw;
+    width: 70vw;
+    height: 0;
+  }
+}
 .icons, .center-card.active .icons {
   color: white;
   display: inline;
   font-size: 2rem;
-  padding-left: 10px;
-  padding-top: 20px;
+  padding-left: 25px;
+  padding-top: 38px;
 }
 
 .center-card, .center-card.active {
-  background-color: #691e01;
   position: fixed;
   right: 0px;
-  height: 70px;
-  width: 55px;
-  border-radius: 10px 0 0 10px;
-  box-shadow: #616161 2px 2px 5px 5px;
-  color: rgba(255, 255, 255, 0);
+  height: 100px;
+  width: 85px;
+  border-radius: 5px 0 0 5px;
   transition-duration: 0.5s;
   cursor: pointer;
   display: inline;
@@ -59,45 +96,93 @@ body {
   position: fixed;
   top: 20vh;
   right: 3px;
-  height: 70px;
-  width: 50px;
+  height: 100px;
+  width: 85px;
   background-color: inherit;
   box-shadow: 0;
   cursor: pointer;
 }
 
 #resume-card {
-  top: 28.5vh;
+  top: 20vh;
+  margin-top: 103px;
+  background-color: #f78888;
 }
 
 #resume-card.active {
   top: 10vh;
+  margin-top: 0;
 }
 
 #about-card {
-  top: 37vh;
+  top: 20vh;
+  margin-top: 206px;
+  background-color: #f3d250;
 }
 
 #about-card.active {
   top: 10vh;
+  margin-top: 0;
 }
 
 #project-card {
-  top: 45.5vh;
+  top: 20vh;
+  margin-top: 309px;
+  background-color: #90ccf4;
 }
 
 #project-card.active {
   top: 10vh;
+  margin-top: 0;
 }
 
 #contact-card {
-  top: 54vh;
+  top: 20vh;
+  margin-top: 412px;
+  background-color: #5da2d5;
 }
 
 #contact-card.active {
   top: 10vh;
+  margin-top: 0;
 }
 
+@media only screen and (max-height: 800px) {
+  .center-card, .center-card.active {
+    height: 60px;
+    width: 55px;
+    margin-top: -20px;
+  }
+  .center-card .card-title {
+    padding-top: 15px;
+  }
+
+  .icons, .center-card.active .icons, #info-card {
+    font-size: 1.6rem;
+    padding: 18px 0px 0px 18px;
+  }
+
+  #info-card {
+    right: 0px;
+    width: 75px;
+  }
+
+  #resume-card {
+    margin-top: 77px;
+  }
+
+  #about-card {
+    margin-top: 154px;
+  }
+
+  #project-card {
+    margin-top: 231px;
+  }
+
+  #contact-card {
+    margin-top: 308px;
+  }
+}
 .center-card:hover, .hovered {
   width: 200px;
   overflow: hidden;
@@ -107,13 +192,12 @@ body {
 }
 
 .center-card.active {
-  background-image: linear-gradient(45deg, #e4e133 5%, #691e01 70%);
   top: 10vh;
   right: 10vw;
   height: 80vh;
   width: 80vw;
   border-radius: 0;
-  color: #ffffff;
+  color: #000;
   cursor: auto;
 }
 .center-card.active .icons {
@@ -122,6 +206,7 @@ body {
 .center-card.active .card-title {
   text-align: center;
   margin-top: 30px;
+  color: #000;
   transition-duration: 0.5s;
   display: block;
 }
