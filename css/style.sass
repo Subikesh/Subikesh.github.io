@@ -1,14 +1,14 @@
 // Variables
 @use 'sass:list'
 $bgColor: rgb(56, 167, 241)
-$cardColors: #f78888, #f3d250, #90ccf4, #5da2d5, #ececec
+$cardColors: #f78888, #f3d250, #90ccf4, #5da2d5
 $top-padding: 20vh
 $cards: resume, about, project, contact
 
 // Main Page
 
 body
-    background-image: linear-gradient(80deg, $bgColor 5%, whitesmoke 20%, whitesmoke 60%, $bgColor)
+    background-image: linear-gradient(80deg, $bgColor 5%, #ececec 20%, #ececec 60%, $bgColor)
     background-repeat: no-repeat
     background-size: cover
     margin: 0
@@ -18,17 +18,19 @@ body
 .name-header 
     padding-top: 35vh
     max-width: 520px
-    .display-4
-        opacity: 0
-        animation: fadeineffect 1s
-        animation-fill-mode: forwards
-    .display-1
-        opacity: 0
-        animation: fadeineffect 1s 
-        animation-delay: 1s
-        animation-fill-mode: forwards
 
-@keyframes fadeineffect
+.fadefirst
+    opacity: 0
+    animation: fadeInEffect 1s
+    animation-fill-mode: forwards
+.fadesecond
+    opacity: 0
+    animation: fadeInEffect 1s 
+    animation-delay: 1s
+    animation-fill-mode: forwards
+
+// Fade-in effect for the letters
+@keyframes fadeInEffect
     0%
         opacity: 0
     100%
@@ -46,11 +48,13 @@ body
     white-space: nowrap
 
 .ruler
-    border: 1px solid rgb(161, 161, 161)
+    border: 1px solid rgb(100, 100, 100)
     position: absolute 
     top: 8vw
     left: 60vw
-    height: 70vh
+    height: 0
+    animation: drawLine-v 1.5s     
+    animation-fill-mode: forwards
 
 // Making ruler horizontal for < mid screens
 @media only screen and (max-width: 992px)
@@ -59,8 +63,18 @@ body
     .ruler
         top: 65vh
         left: 8vw
+        width: 0
+        height: 0        
+        animation: drawLine-h 1.5s
+        animation-fill-mode: forwards
+
+// Draw line in vertical and horizontal direction
+@keyframes drawLine-h 
+    100%
         width: 70vw
-        height: 0
+@keyframes drawLine-v
+    100%
+        height: 70vh
 
 // Main Page ends
 
@@ -88,7 +102,6 @@ body
         padding-left: 10px
         padding-top: 20px
         color: #ffffff
-        transition-duration: 0.5s
     p
         display: none
 
@@ -108,9 +121,22 @@ body
         top: $top-padding
         margin-top: 103px * $card
         background-color: #{list.nth($cardColors, $card)}
+        transform: translateX(100%)
+        animation: pullInCards 0.7s
+        animation-delay: 0.6s * $card
+        animation-fill-mode: forwards
     ##{list.nth($cards, $card)}-card.active 
         top: 10vh
         margin-top: 0
+
+// To give a pull in effect on page load
+@keyframes pullInCards
+    0%
+        transform: translateX(100%)
+    80%
+        transform: translateX(-20%)
+    100%    
+        transform: translateX(0%)
 
 @media only screen and ( max-height: 800px )
     .center-card
@@ -137,6 +163,7 @@ body
     .card-title
         display: inline-block
 
+
 // Card after opening it
 .center-card.active 
     @extend .center-card
@@ -148,6 +175,7 @@ body
     border-radius: 0
     color: #000
     cursor: auto
+    animation-fill-mode: forwards
 
     .icons
         @extend .icons
