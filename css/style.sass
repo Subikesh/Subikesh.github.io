@@ -3,7 +3,7 @@
 $bgColor: rgb(56, 167, 241)
 $cardColors: #f78888, #f3d250, #90ccf4, #5da2d5
 $top-padding: 20vh
-$cards: resume, project, about, contact
+$cards: about, project, resume, contact
 
 // Main Page
 
@@ -19,7 +19,15 @@ body
 
 .name-header 
     padding-top: 35vh
-    max-width: 520px
+
+.social
+    padding-top: 8vh
+    padding-left: 2vw
+    font-size: 2rem
+    a
+        margin-left: 50px
+        color: white
+    
 
 .fadefirst
     opacity: 0
@@ -45,15 +53,18 @@ body
             font-size: 5rem
         .display-4
             font-size: 3rem
+    .social
+        padding-top: 20vh
 
 .non-overflow
     white-space: nowrap
+    padding-right: 80px
 
 .ruler
     border: 1px solid rgb(180, 180, 180)
     position: absolute 
-    top: 9vw
-    left: 60vw
+    top: 9%
+    left: 60%
     height: 0
     animation: drawLine-v 1.5s     
     animation-fill-mode: forwards
@@ -63,12 +74,16 @@ body
     .name-header
         padding-top: 25vh
     .ruler
-        top: 65vh
-        left: 9vw
+        position: relative
+        top: 7vh
+        left: 0%
         width: 0
         height: 0        
         animation: drawLine-h 1.5s
         animation-fill-mode: forwards
+    .social
+        padding-top: 10vh
+        font-size: 1.5rem
 
 // Draw line in vertical and horizontal direction
 @keyframes drawLine-h 
@@ -88,6 +103,7 @@ body
         font-size: 2rem
         padding-left: 25px
         padding-top: 38px
+        display: inline
 
 .center-card 
     position: fixed
@@ -99,11 +115,14 @@ body
     cursor: pointer
     display: inline    
 
-    .card-title 
+    .tag-title
         display: none
         padding-left: 10px
         padding-top: 20px
         color: #ffffff
+    
+    .card-title 
+        display: none    
     p
         display: none
 
@@ -149,6 +168,7 @@ body
         .card-title
             padding-top: 15px
 
+    
     .icons, #info-card
         font-size: 1.6rem
         padding: 20px 0px 0px 18px
@@ -163,7 +183,7 @@ body
 .center-card:hover, .hovered
     width: 200px 
     overflow: hidden
-    .card-title
+    .tag-title
         display: inline-block
 
 
@@ -179,14 +199,24 @@ body
     color: #000
     cursor: auto
     animation-fill-mode: forwards
-
+    .tag-title
+        display: none
     .card-title 
         text-align: center
+        justify-content: center
+        align-items: center
         margin-top: 30px
         color: #000
         transition-duration: 0.5s
         display: block
     p
-        display: inline
+        display: block
+
+    // About Card
+    .about-content
+        margin-top: 20%
+        height: 100%
+        overflow-y: auto
 
 // Pop-up card end
+

@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(80deg, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0)), url("/bgImage.jpg");
+  background: linear-gradient(80deg, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0)), url("/bgImage.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
@@ -10,7 +10,16 @@ body {
 
 .name-header {
   padding-top: 35vh;
-  max-width: 520px;
+}
+
+.social {
+  padding-top: 8vh;
+  padding-left: 2vw;
+  font-size: 2rem;
+}
+.social a {
+  margin-left: 50px;
+  color: white;
 }
 
 .fadefirst {
@@ -41,16 +50,21 @@ body {
   .name-header .display-4 {
     font-size: 3rem;
   }
+
+  .social {
+    padding-top: 20vh;
+  }
 }
 .non-overflow {
   white-space: nowrap;
+  padding-right: 80px;
 }
 
 .ruler {
   border: 1px solid #b4b4b4;
   position: absolute;
-  top: 9vw;
-  left: 60vw;
+  top: 9%;
+  left: 60%;
   height: 0;
   animation: drawLine-v 1.5s;
   animation-fill-mode: forwards;
@@ -62,12 +76,18 @@ body {
   }
 
   .ruler {
-    top: 65vh;
-    left: 9vw;
+    position: relative;
+    top: 7vh;
+    left: 0%;
     width: 0;
     height: 0;
     animation: drawLine-h 1.5s;
     animation-fill-mode: forwards;
+  }
+
+  .social {
+    padding-top: 10vh;
+    font-size: 1.5rem;
   }
 }
 @keyframes drawLine-h {
@@ -86,6 +106,7 @@ body {
   font-size: 2rem;
   padding-left: 25px;
   padding-top: 38px;
+  display: inline;
 }
 
 .center-card, .center-card.active {
@@ -98,11 +119,14 @@ body {
   cursor: pointer;
   display: inline;
 }
-.center-card .card-title {
+.center-card .tag-title {
   display: none;
   padding-left: 10px;
   padding-top: 20px;
   color: #ffffff;
+}
+.center-card .card-title {
+  display: none;
 }
 .center-card p, .center-card.active p {
   display: none;
@@ -119,7 +143,7 @@ body {
   cursor: pointer;
 }
 
-#resume-card {
+#about-card {
   top: 20vh;
   margin-top: 103px;
   background-color: #f78888;
@@ -129,7 +153,7 @@ body {
   animation-fill-mode: forwards;
 }
 
-#resume-card.active {
+#about-card.active {
   top: 10vh;
   margin-top: 0;
 }
@@ -149,7 +173,7 @@ body {
   margin-top: 0;
 }
 
-#about-card {
+#resume-card {
   top: 20vh;
   margin-top: 309px;
   background-color: #90ccf4;
@@ -159,7 +183,7 @@ body {
   animation-fill-mode: forwards;
 }
 
-#about-card.active {
+#resume-card.active {
   top: 10vh;
   margin-top: 0;
 }
@@ -210,7 +234,7 @@ body {
     width: 75px;
   }
 
-  #resume-card {
+  #about-card {
     margin-top: 77px;
   }
 
@@ -218,7 +242,7 @@ body {
     margin-top: 154px;
   }
 
-  #about-card {
+  #resume-card {
     margin-top: 231px;
   }
 
@@ -230,7 +254,7 @@ body {
   width: 200px;
   overflow: hidden;
 }
-.center-card:hover .card-title, .hovered .card-title {
+.center-card:hover .tag-title, .hovered .tag-title {
   display: inline-block;
 }
 
@@ -244,15 +268,25 @@ body {
   cursor: auto;
   animation-fill-mode: forwards;
 }
+.center-card.active .tag-title {
+  display: none;
+}
 .center-card.active .card-title {
   text-align: center;
+  justify-content: center;
+  align-items: center;
   margin-top: 30px;
   color: #000;
   transition-duration: 0.5s;
   display: block;
 }
 .center-card.active p {
-  display: inline;
+  display: block;
+}
+.center-card.active .about-content {
+  margin-top: 20%;
+  height: 100%;
+  overflow-y: auto;
 }
 
 /*# sourceMappingURL=style.css.map */
