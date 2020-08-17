@@ -125,11 +125,11 @@ body {
   padding-top: 20px;
   color: #ffffff;
 }
-.center-card .card-title {
+.center-card .card-title, .center-card .card-content, .center-card .google-form {
   display: none;
 }
-.center-card .card-content {
-  display: none;
+.center-card .google-form {
+  overflow-y: hidden;
 }
 
 #info-card {
@@ -297,6 +297,15 @@ body {
   margin-top: 20%;
   height: 100%;
   overflow-y: auto;
+}
+.center-card.active .google-form {
+  display: block;
+}
+
+#resume-card .card-content {
+  max-width: 550px;
+  margin: auto;
+  margin-top: 7%;
 }
 
 /*# sourceMappingURL=style.css.map */

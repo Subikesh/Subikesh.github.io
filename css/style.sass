@@ -121,10 +121,10 @@ body
         padding-top: 20px
         color: #ffffff
     
-    .card-title 
-        display: none    
-    .card-content
+    .card-title, .card-content, .google-form
         display: none
+    .google-form
+        overflow-y: hidden
 
 #info-card
     position: fixed
@@ -229,5 +229,14 @@ body
         height: 100%
         overflow-y: auto
 
+    .google-form
+        display: block
+
+// Resume card
+#resume-card
+    .card-content
+        max-width: 550px
+        margin: auto
+        margin-top: 7%
 // Pop-up card end
 
