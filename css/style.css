@@ -128,7 +128,7 @@ body {
 .center-card .card-title {
   display: none;
 }
-.center-card p, .center-card.active p {
+.center-card .card-content {
   display: none;
 }
 
@@ -214,7 +214,7 @@ body {
     transform: translateX(0%);
   }
 }
-@media only screen and (max-height: 800px) {
+@media only screen and (max-height: 800px), only screen and (max-width: 430px) {
   .center-card, .center-card.active {
     height: 70px;
     width: 75px;
@@ -267,9 +267,19 @@ body {
   color: #000;
   cursor: auto;
   animation-fill-mode: forwards;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.center-card.active .resume-btn {
+  float: right;
 }
 .center-card.active .tag-title {
   display: none;
+}
+.center-card.active .icons {
+  position: fixed;
+  top: 10px;
+  left: 10px;
 }
 .center-card.active .card-title {
   text-align: center;
@@ -280,10 +290,10 @@ body {
   transition-duration: 0.5s;
   display: block;
 }
-.center-card.active p {
+.center-card.active .card-content {
   display: block;
 }
-.center-card.active .about-content {
+.center-card.active .card-content {
   margin-top: 20%;
   height: 100%;
   overflow-y: auto;
