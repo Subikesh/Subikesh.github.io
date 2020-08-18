@@ -29,7 +29,7 @@ document.addEventListener("click", function(event) {
     // Function to pull up and push back the card for resume
     for (let i = 0; i < cards.length; i++) {
         var card = document.getElementById(cards[i]+"-card");
-        var title = document.querySelector("#"+cards[i]+"-card .card-title");
+        var title = document.querySelector("#"+cards[i]+"-card .section-title");
         if (card.contains(event.target)) {
             card.classList.add("active");
             title.classList.add("display-3");
