@@ -30,6 +30,10 @@ body {
   padding-top: 8vh;
   padding-left: 2vw;
   font-size: 2rem;
+  opacity: 0;
+  animation: fadeInEffect 1s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
 }
 .social a {
   margin-left: 50px;
@@ -39,13 +43,14 @@ body {
 .fadefirst {
   opacity: 0;
   animation: fadeInEffect 1s;
+  animation-delay: 1s;
   animation-fill-mode: forwards;
 }
 
 .fadesecond {
   opacity: 0;
   animation: fadeInEffect 1s;
-  animation-delay: 1s;
+  animation-delay: 2s;
   animation-fill-mode: forwards;
 }
 

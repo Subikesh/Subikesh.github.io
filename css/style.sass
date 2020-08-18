@@ -17,6 +17,7 @@ body
     overflow: auto
     color: white
 
+// Adding custom Scrollbar
 ::-webkit-scrollbar 
     width: 13px
 
@@ -37,19 +38,23 @@ body
     padding-top: 8vh
     padding-left: 2vw
     font-size: 2rem
+    opacity: 0
+    animation: fadeInEffect 1s 
+    animation-delay: 3s
+    animation-fill-mode: forwards
     a
         margin-left: 50px
         color: white
-    
 
 .fadefirst
     opacity: 0
     animation: fadeInEffect 1s
+    animation-delay: 1s
     animation-fill-mode: forwards
 .fadesecond
     opacity: 0
     animation: fadeInEffect 1s 
-    animation-delay: 1s
+    animation-delay: 2s
     animation-fill-mode: forwards
 
 // Fade-in effect for the letters
