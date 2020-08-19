@@ -8,7 +8,6 @@ $cards: about, project, resume, contact
 // Main Page
 
 body
-    // background-image: linear-gradient(80deg, $bgColor 5%, #ececec 20%, #ececec 60%, $bgColor)
     background: linear-gradient(80deg, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0)), url("/images/bgImage.jpg")
     background-repeat: no-repeat
     background-size: cover
@@ -57,13 +56,6 @@ body
     animation-delay: 2s
     animation-fill-mode: forwards
 
-// Fade-in effect for the letters
-@keyframes fadeInEffect
-    0%
-        opacity: 0
-    100%
-        opacity: 1
-
 // To prevent the card overlap the heading
 @media only screen and (max-width: 660px)
     .name-header
@@ -103,14 +95,6 @@ body
         padding-top: 10vh
         font-size: 1.5rem
 
-// Draw line in vertical and horizontal direction
-@keyframes drawLine-h 
-    100%
-        width: 70vw
-@keyframes drawLine-v
-    100%
-        height: 70vh
-
 // Main Page ends
 
 // Pop-up Card     
@@ -132,6 +116,7 @@ body
     transition-duration: 0.5s
     cursor: pointer
     display: inline    
+    z-index: 100
 
     .tag-title
         display: none
@@ -167,16 +152,6 @@ body
     ##{list.nth($cards, $card)}-card.active 
         top: 10vh
         margin-top: 0
-
-
-// To give a pull in effect on page load
-@keyframes pullInCards
-    0%
-        transform: translateX(100%)
-    80%
-        transform: translateX(-20%)
-    100%    
-        transform: translateX(0%)
 
 // Reducing pop-up icons size for small displays
 @media only screen and (max-height: 800px), only screen and (max-width: 430px)
@@ -219,6 +194,7 @@ body
     animation-fill-mode: forwards
     overflow-y: auto
     overflow-x: hidden
+    z-index: 200
 
     .resume-btn
         float: right
@@ -261,11 +237,45 @@ body
         max-width: 550px
         margin: auto
         padding-top: 7%
+        font-size: 1.3rem
 
+// Project card
 #project-card
     .card-group
         padding-top: 7%
     .card-content
         padding-top: 0
+
+// About card
+#about-card
+    .card-content
+        font-size: 1.4rem
 // Pop-up card end
 
+// KeyFrame animation definitions
+
+// Fade-in effect for the letters
+@keyframes fadeInEffect
+    0%
+        opacity: 0
+    100%
+        opacity: 1
+
+// Draw line in vertical and horizontal direction
+@keyframes drawLine-h 
+    100%
+        width: 70vw
+@keyframes drawLine-v
+    100%
+        height: 70vh
+
+// To give a pull in effect for pop-up cards on page load
+@keyframes pullInCards
+    0%
+        transform: translateX(100%)
+    80%
+        transform: translateX(-20%)
+    100%    
+        transform: translateX(0%)
+
+// Keyframes end
