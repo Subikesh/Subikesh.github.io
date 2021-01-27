@@ -41,3 +41,21 @@ document.addEventListener("click", function(event) {
         
     }
 });
+
+// Bootstrap tooltip
+// var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'));
+// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+//   return new bootstrap.Tooltip(tooltipTriggerEl)
+// });
+// $(function () {
+//     $('[data-toggle="tooltip"]').mouseover(function(this) {
+//         this.tooltip('show');
+//         this.append("Hello");
+//     });
+// });
+// $(function () {
+//     $('.toolti').hover(function(this) {
+//         this.tooltip('show');
+//         this.append("Hello");
+//     });
+// });

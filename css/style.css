@@ -146,6 +146,11 @@ body {
   cursor: pointer;
 }
 
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
 #about-card {
   top: 20vh;
   margin-top: 103px;
