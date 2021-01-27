@@ -56,10 +56,10 @@ body {
 
 @media only screen and (max-width: 660px) {
   .name-header .display-1 {
-    font-size: 5rem;
+    font-size: 4rem;
   }
   .name-header .display-4 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .social {
@@ -73,6 +73,7 @@ body {
 
 .ruler {
   border: 1px solid #b4b4b4;
+  background-color: #b4b4b4;
   position: absolute;
   top: 9%;
   left: 60%;
@@ -213,6 +214,10 @@ body {
   }
   .center-card .section-title {
     padding-top: 15px;
+  }
+
+  .center-card.hovered {
+    width: 175px;
   }
 
   .icons, #info-card {
