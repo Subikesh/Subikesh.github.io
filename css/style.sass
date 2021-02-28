@@ -5,8 +5,17 @@ $cardColors: #f78888, #ffd254, #90ccf4, #5da2d5
 $top-padding: 20vh
 $cards: about, project, resume, contact
 
-// Main Page
+// Preloader
+.preloader
+    position: fixed
+    left: 0px
+    top: 0px
+    width: 100%
+    height: 100%
+    z-index: 9999
+    background: url(/images/loader.gif) center no-repeat #fff
 
+// Main Page
 body
     background: linear-gradient(80deg, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0)), url("/images/bgImage.jpg")
     background-repeat: no-repeat
@@ -15,6 +24,9 @@ body
     height: 100vh
     overflow: auto
     color: white
+
+.js-loader *, .js-loader *:before, .js-loader *:after
+    animation-play-state: paused !important
 
 // Adding custom Scrollbar
 ::-webkit-scrollbar 

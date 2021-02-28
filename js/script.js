@@ -1,3 +1,10 @@
+// Preloader
+$(window).on('load',function() {
+    // Animate loader off screen
+    $(".preloader").fadeOut("slow");
+    document.body.classList.remove('js-loader');
+});
+
 // All click events
 document.addEventListener("click", function(event) {
     
