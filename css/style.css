@@ -169,7 +169,7 @@ a:hover {
 #project-card {
   top: 20vh;
   margin-top: 206px;
-  background-color: #f3d250;
+  background-color: #ffd254;
   transform: translateX(100%);
   animation: pullInCards 0.7s;
   animation-delay: 1.2s;
