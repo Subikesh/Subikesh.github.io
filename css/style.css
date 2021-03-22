@@ -330,6 +330,9 @@ a:hover {
   display: block;
 }
 
+.card-text {
+  margin-bottom: 1rem;
+}
 .card-text .btn-sm {
   background: #90ccf4;
   cursor: default;
@@ -383,5 +386,3 @@ a:hover {
     transform: translateX(0%);
   }
 }
-
-/*# sourceMappingURL=style.css.map */
