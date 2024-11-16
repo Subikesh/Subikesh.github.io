@@ -1,0 +1,231 @@
+{
+  "about": {
+    "content": [
+      "I am currently working as an Android Developer in Zoho Corporation. I have completing my Bachelor's in SRM Easwari engineering college majoring in Computer Science and Engineering. I have a great interest in building apps and websites, and would like to explore more in the field of software.",
+      "I am always curious about the things I see and use, and I enjoy learning them. I like to work on projects out of my knowledge, so I could learn more while making new projects. I am looking forward to implementing and improving my skills in any opportunities that I pursue."
+    ]
+  },
+  "projects": [
+    {
+      "title": "Ecommerce Application",
+      "description": "An application that gets products data from Flipkart affiliate API and implements the ecommerce workflow with cart, wishlisting, and buying products.",
+      "points": [
+        "Implemented while studying android",
+        "Used retrofit and room db for network and database calls",
+        "Learned dependency injection using dagger along with many architectural patterns"
+      ],
+      "tags": [
+        "Android",
+        "Kotlin",
+        "Clean Architecture"
+      ],
+      "buttons": [
+        {
+          "url": "https://github.com/Subikesh/ECommerceApplication",
+          "text": "Source Code"
+        }
+      ]
+    },
+    {
+      "title": "Code Database",
+      "description": "An application to store coding questions and track your progress on the road to become an expert programmer.",
+      "points": [
+        "Implemented the MVT design pattern in Django, Python and designed the database with MySQL database.",
+        "A REST API is created using django-rest-framework to do CRUD operations on the website.",
+        "Created an Android app which consumes the hosted REST API for list, search and user login functionalities.",
+        "Hosted it in python-anywhere with MySQL database as an open-source app"
+      ],
+      "tags": [
+        "Django",
+        "Django-rest-framework",
+        "CRUD",
+        "PostgreSQL"
+      ],
+      "buttons": [
+        {
+          "url": "https://github.com/Subikesh/Code-Database",
+          "text": "Source Code"
+        },
+        {
+          "url": "https://github.com/Subikesh/CodeDatabase_android",
+          "text": "Android Source Code"
+        },
+        {
+          "url": "https://codedatabase.pythonanywhere.com/",
+          "text": "View Project"
+        }
+      ]
+    },
+    {
+      "title": "Digit Recognizer",
+      "description": "An app to predict hand-written digits drawn by user using deep learning. The project is done from scratch using numpy and pandas libraries in python.",
+      "tags": [
+        "Django",
+        "Neural Nets",
+        "MNIST Classification"
+      ],
+      "buttons": [
+        {
+          "url": "https://github.com/Subikesh/Digit-Recognition",
+          "text": "Source Code"
+        },
+        {
+          "url": "https://subikeshdigits.herokuapp.com/",
+          "text": "View Project"
+        }
+      ]
+    },
+    {
+      "title": "Dental Data Statistics",
+      "description": "An application to give a neat GUI for inserting, updating and displaying the data graphically and generating a report from the data given from a dental hospital. The app is currently being used by SRM dental hospital for tracking patient records.",
+      "tags": [
+        "Tkinter",
+        "SQLite",
+        "Report Generation",
+        "Data visualization"
+      ],
+      "buttons": [
+        {
+          "url": "https://github.com/Subikesh/DentalDataStatictics",
+          "text": "Source Code"
+        }
+      ]
+    },
+    {
+      "title": "Tic-Tac-Toe AI",
+      "description": "The game tic-tac-toe for two player and single player - with AI created using minimax algorithm made using python.",
+      "tags": [
+        "Game Theory",
+        "Mini-max"
+      ],
+      "buttons": [
+        {
+          "url": "https://github.com/Subikesh/Tic-Tac-Toe",
+          "text": "Source Code"
+        }
+      ]
+    },
+    {
+      "title": "Minesweeper",
+      "description": "A strategic single-player game to flag the mines in the board with the clues about neighboring mines. It is created using python in an object-oriented design.",
+      "tags": [
+        "BackTracking",
+        "Tkinter Desktop UI"
+      ],
+      "buttons": [
+        {
+          "url": "https://github.com/Subikesh/Minesweeper",
+          "text": "Source Code"
+        }
+      ]
+    }
+  ],
+  "resume": [
+    {
+      "heading": "Languages",
+      "ul": [
+        "Kotlin",
+        "Java",
+        "Python",
+        "HTML and CSS",
+        "JavaScript",
+        "C/C++"
+      ]
+    },
+    {
+    "heading": "Experience",
+      "list": [
+        {
+          "heading": "Android Developer - Zoho Corporation",
+          "period": "Aug 2021 - Present",
+          "content": "Worked on Zoho CRM mobile app, which is a popular customer interactions management app with a wide user base.",
+          "ol": [
+            {
+              "title": "Kotlin Multiplatform",
+              "ul": [
+                "Created and implemented the base data layer of the CRM mobile app as a Kotlin Multiplatform library with network and database service for both android, iOS and mac platforms.",
+                "Followed best coding practices and enforced separation of concerns and unidirectional data flow.",
+                "Created the base for writing unit tests for the SDK and wrote unit tests for the custom filters feature in KMP",
+                "This SDK has cut down the development time by 50%, as a feature’s backend only needs to be done once for both android and iOS platforms."
+              ]
+            },
+            {
+              "title": "Migration Tool",
+              "ul": [
+                "Created a database migration tool which drafts SQL queries from XML schema definitions in compile time for all the platforms with common database structure.",
+                "The tool helped the team easily make changes and run migrations on the database and also reduced DB maintenance and testing work by 40%."
+              ]
+            },
+            {
+              "title": "Use Case Testing",
+              "ul": [
+                "Created a base setup for writing Use Case Testing for different user interactions in the domain/backend layer which reduced the UI testing time by 80% which helped run tests in frequent iterations.",
+                "This testing framework is a data-driven testing framework which uses JUnit parameterised testing and MockK for testing and mocking data.",
+                "Implemented test cases for some features in CRM mobile using an internal Espresso library wrapper."
+              ]
+            },
+            {
+              "title": "Custom Filters",
+              "ul": [
+                "Worked on framing SQL criteria from the filters set by the user to filter records along with android paging 3 to improve record loading speeds by 500 ms by supporting offline criteria resolution in mobile."
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Backend Developer Intern - Olcademy",
+          "period": "Dec 2020 - Mar 2021",
+          "ul": [
+            "Solved many critical functional bugs on PHP and jQuery.",
+            "Transitioned major files from MySQL to MongoDB in a short period."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Skills",
+      "list": [
+        {
+          "heading": "Software Development",
+          "ul": [
+            {
+              "title": "Android Development",
+              "ul": [
+                "Dagger 2",
+                "Room DB",
+                "Retrofit",
+                "Clean Architecture"
+              ]
+            },
+            {
+              "title": "Web Framework",
+              "ul": [
+                "Django"
+              ]
+            },
+            {
+              "title": "Databases",
+              "ul": [
+                "PostgreSQL",
+                "MySQL",
+                "MongoDB"
+              ]
+            },
+            {
+              "title": "Git version control"
+            }
+          ]
+        },
+        {
+          "heading": "Web Development",
+          "ul": [
+            "HTML <i class=\"fab fa-html5\"></i> ",
+            "CSS <i class=\"fab fa-css3-alt\"></i> and <i class=\"fab fa-sass\"></i> ",
+            "Bootstrap <i class=\"fab fa-bootstrap\"></i>",
+            "JavaScript and jQuery <i class=\"fab fa-js-square\"></i>"
+          ]
+        }
+      ]
+    }
+  ]
+}
