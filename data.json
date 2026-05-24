@@ -2,10 +2,10 @@
   "meta": {
     "pageTitle": "Subikesh | Portfolio",
     "name": "Subikesh P S",
-    "designation": "Software developer",
+    "designation": "Software Engineer 2 - Android",
     "resumePdf": "Resume.pdf",
     "contactFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLScJizHy7OZI_rQ9L6iTb1lt2SIzrDNopmaaEb9HhzcB4F67uA/viewform?embedded=true",
-    "description": "Personal portfolio of Subikesh P S — Android developer at Zoho Corporation.",
+    "description": "Personal portfolio of Subikesh P S — Software Engineer 2 (Android) at Intuit, working on Kotlin Multiplatform, Jetpack Compose, and AI-powered experiences.",
     "social": [
       { "label": "Github",   "url": "https://github.com/Subikesh",              "icon": "fa fa-github" },
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/subikeshps/",  "icon": "fa fa-linkedin" },
@@ -14,11 +14,27 @@
   },
   "about": {
     "content": [
-      "I am currently working as an Android Developer in Zoho Corporation. I completed my Bachelor's in SRM Easwari engineering college majoring in Computer Science and Engineering. I have a great interest in building apps and websites, and would like to explore more in the field of software.",
-      "I am always curious about the things I see and use, and I enjoy learning them. I like to work on projects out of my knowledge, so I could learn more while making new projects. I am looking forward to implementing and improving my skills in any opportunities that I pursue."
+      "I am currently working as a Software Engineer 2 - Android at Intuit, building mobile experiences for TurboTax and QuickBooks customers. I completed my Bachelor's in SRM Easwari Engineering College majoring in Computer Science and Engineering. I love crafting performant, well-architected Android apps using Kotlin Multiplatform, Jetpack Compose, and Clean Architecture, and I enjoy exploring the intersection of mobile and AI.",
+      "I am always curious about the things I see and use, and I enjoy learning them. Lately, that curiosity has pulled me deeper into AI engineering — building RAG pipelines, working with vector databases, and shipping AI-powered features end to end. I like to work on projects out of my comfort zone so I can learn while building, and I am always looking forward to opportunities to grow my skills."
     ]
   },
   "projects": [
+    {
+      "title": "NewsBuddy - AI News Companion",
+      "image": "/images/newsbuddy.png",
+      "alt": "NewsBuddy",
+      "description": "A cross-platform AI news companion app that delivers daily briefings across 8 categories with follow-up conversational Q&A and source attribution.",
+      "points": [
+        "Built and shipped using Kotlin Multiplatform and Jetpack Compose, with AI-generated daily briefings and conversational Q&A backed by source attribution.",
+        "Implemented Clean Architecture with MVVM, Kotlin Coroutines and Flows for reactive state management, and Ktor for networking — with all chat data persisted on-device for user privacy.",
+        "Engineered a Django REST backend with a RAG pipeline using Gemini embeddings and a Qdrant vector database, enabling semantic search across daily articles to power context-aware AI responses."
+      ],
+      "tags": ["Kotlin Multiplatform", "Jetpack Compose", "RAG", "Qdrant", "Django REST"],
+      "buttons": [
+        { "url": "https://play.google.com/store/apps/details?id=com.spacey.newsbuddy.android", "text": "Play Store" },
+        { "url": "https://newsbuddyapp.in/",                                                   "text": "Website" }
+      ]
+    },
     {
       "title": "Ecommerce Application",
       "image": "/images/ecommerce_app.jpeg",
@@ -94,87 +110,107 @@
   ],
   "resume": [
     {
-      "heading": "Languages",
-      "ul": ["Kotlin", "Java", "Python", "HTML and CSS", "JavaScript", "C/C++"]
-    },
-    {
       "heading": "Experience",
       "list": [
         {
-          "heading": "Android Developer - Zoho Corporation",
-          "period": "Aug 2021 - Present",
-          "content": "Worked on Zoho CRM mobile app, which is a popular customer interactions management app with a wide user base.",
+          "heading": "Software Engineer 2 - Android, Intuit Inc",
+          "period": "March 2025 - Present",
           "ol": [
             {
-              "title": "Kotlin Multiplatform",
+              "title": "Virtual Expert Platform",
               "ul": [
-                "Created and implemented the base data layer of the CRM mobile app as a Kotlin Multiplatform library with network and database service for both android, iOS and mac platforms.",
-                "Followed best coding practices and enforced separation of concerns and unidirectional data flow.",
-                "Created the base for writing unit tests for the SDK and wrote unit tests for the custom filters feature in KMP",
-                "This SDK has cut down the development time by 50%, as a feature’s backend only needs to be done once for both android and iOS platforms."
+                "Improved user experience for TurboTax and QuickBooks customers by resolving critical bugs in VEP mobile SDKs (chat, video, screenshare), ensuring reliable and streamlined connections to tax experts.",
+                "Collaborated with the team under a tight deadline to integrate a new video/screenshare SDK alongside the older vendor, building an abstraction layer to facilitate its future deprecation.",
+                "Supported Jetpack Compose migration across multiple assets owned by VEP, driving modernization of the UI layer with proper state management and recomposition patterns."
               ]
             },
             {
-              "title": "Migration Tool",
+              "title": "One Intuit Contact Us SDK",
               "ul": [
-                "Created a database migration tool which drafts SQL queries from XML schema definitions in compile time for all the platforms with common database structure.",
-                "The tool helped the team easily make changes and run migrations on the database and also reduced DB maintenance and testing work by 40%."
-              ]
-            },
-            {
-              "title": "Use Case Testing",
-              "ul": [
-                "Created a base setup for writing Use Case Testing for different user interactions in the domain/backend layer which reduced the UI testing time by 80% which helped run tests in frequent iterations.",
-                "This testing framework is a data-driven testing framework which uses JUnit parameterised testing and MockK for testing and mocking data.",
-                "Implemented test cases for some features in CRM mobile using an internal Espresso library wrapper."
-              ]
-            },
-            {
-              "title": "Custom Filters",
-              "ul": [
-                "Worked on framing SQL criteria from the filters set by the user to filter records along with android paging 3 to improve record loading speeds by 500 ms by supporting offline criteria resolution in mobile."
+                "Owned the Intuit-wide “Contact Us” mobile SDK, providing end-to-end support and maintenance for internal partner teams and ensuring code quality with peer reviews.",
+                "Refactored the SDK to an MVI architecture to facilitate future Compose migration and implemented deeplinking, achieving a 7% increase in clickthrough rate.",
+                "Migrated chat experience by integrating a GenAI widget that bridges AI with HI for tax filing assistance."
               ]
             }
           ]
         },
         {
-          "heading": "Backend Developer Intern - Olcademy",
-          "period": "Dec 2020 - Mar 2021",
-          "ul": [
-            "Solved many critical functional bugs on PHP and jQuery.",
-            "Transitioned major files from MySQL to MongoDB in a short period."
+          "heading": "Member Technical Staff - Android, Zoho Corporation",
+          "period": "May 2022 - March 2025",
+          "ol": [
+            {
+              "title": "Kotlin Multiplatform SDK",
+              "ul": [
+                "Developed a Kotlin Multiplatform library for Zoho CRM's shared domain and data layers with network services using Ktor and Koin DI, ensuring seamless functionality across Android, iOS, and macOS platforms.",
+                "Conducted in-depth KMP performance and interop analysis on Android and iOS, identifying critical performance bottlenecks and interop issues in the early alpha stage, informing the team's adoption strategy.",
+                "Enforced separation of concerns, unidirectional data flow, and Clean Architecture principles to improve code maintainability, resulting in a 30% reduction in development time."
+              ]
+            },
+            {
+              "title": "Database Migration Tool",
+              "ul": [
+                "Built a database migration tool using Gradle, Kotlin, and XML schema parsing to automate SQL DDL query generation at compile time for Android, iOS, and macOS platforms.",
+                "Integrated migration in CI/CD to boost developer productivity, cutting database maintenance and testing workloads by 25%."
+              ]
+            },
+            {
+              "title": "Use Case Testing Framework",
+              "ul": [
+                "Created a robust framework for Use Case Testing in the domain and data layer, improving testing efficiency and reducing reliance on manual testing by 60%, using JUnit parameterized tests for data-driven testing, MockK for dependency mocking, and Espresso for UI automation."
+              ]
+            }
           ]
         }
+      ]
+    },
+    {
+      "heading": "Education",
+      "ul": [
+        "B.E CSE at SRM Easwari Engineering College, Chennai | 8.86 CGPA with distinction (2018 - 2022)"
       ]
     },
     {
       "heading": "Skills",
       "list": [
         {
-          "heading": "Software Development",
+          "heading": "Android Development",
           "ul": [
-            {
-              "title": "Android Development",
-              "ul": ["Dagger 2", "Room DB", "Retrofit", "Clean Architecture"]
-            },
-            {
-              "title": "Web Framework",
-              "ul": ["Django"]
-            },
-            {
-              "title": "Databases",
-              "ul": ["PostgreSQL", "MySQL", "MongoDB"]
-            },
-            { "title": "Git version control" }
+            "Jetpack Compose",
+            "Kotlin Multiplatform (KMP)",
+            "Kotlin Coroutines and Flows",
+            "Android Jetpack components",
+            "Material Design",
+            "Room Database",
+            "DataStore",
+            "Retrofit",
+            "Ktor"
           ]
         },
         {
-          "heading": "Web Development",
+          "heading": "Architectural Patterns",
           "ul": [
-            "HTML <i class=\"fab fa-html5\"></i> ",
-            "CSS <i class=\"fab fa-css3-alt\"></i> and <i class=\"fab fa-sass\"></i> ",
-            "Bootstrap <i class=\"fab fa-bootstrap\"></i>",
-            "JavaScript and jQuery <i class=\"fab fa-js-square\"></i>"
+            "Clean Architecture",
+            "MVVM",
+            "MVI",
+            { "title": "Dependency Injection", "ul": ["Dagger", "Hilt", "Koin"] }
+          ]
+        },
+        {
+          "heading": "AI & Backend",
+          "ul": [
+            "Retrieval-Augmented Generation (RAG)",
+            "Vector Databases (Qdrant)",
+            "Semantic Search",
+            "LLM Embeddings",
+            "Django and Django REST framework"
+          ]
+        },
+        {
+          "heading": "Testing",
+          "ul": [
+            "UI automation using Espresso and Compose Test Tags",
+            "JUnit parameterized tests",
+            "MockK"
           ]
         }
       ]
