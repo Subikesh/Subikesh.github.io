@@ -1,33 +1,43 @@
 {
+  "meta": {
+    "pageTitle": "Subikesh | Portfolio",
+    "name": "Subikesh P S",
+    "designation": "Software developer",
+    "resumePdf": "Resume.pdf",
+    "contactFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLScJizHy7OZI_rQ9L6iTb1lt2SIzrDNopmaaEb9HhzcB4F67uA/viewform?embedded=true",
+    "description": "Personal portfolio of Subikesh P S — Android developer at Zoho Corporation.",
+    "social": [
+      { "label": "Github",   "url": "https://github.com/Subikesh",              "icon": "fa fa-github" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/subikeshps/",  "icon": "fa fa-linkedin" },
+      { "label": "Mail",     "url": "mailto:subikeshps@gmail.com",              "icon": "fa fa-envelope" }
+    ]
+  },
   "about": {
     "content": [
-      "I am currently working as an Android Developer in Zoho Corporation. I have completing my Bachelor's in SRM Easwari engineering college majoring in Computer Science and Engineering. I have a great interest in building apps and websites, and would like to explore more in the field of software.",
+      "I am currently working as an Android Developer in Zoho Corporation. I completed my Bachelor's in SRM Easwari engineering college majoring in Computer Science and Engineering. I have a great interest in building apps and websites, and would like to explore more in the field of software.",
       "I am always curious about the things I see and use, and I enjoy learning them. I like to work on projects out of my knowledge, so I could learn more while making new projects. I am looking forward to implementing and improving my skills in any opportunities that I pursue."
     ]
   },
   "projects": [
     {
       "title": "Ecommerce Application",
+      "image": "/images/ecommerce_app.jpeg",
+      "alt": "Ecommerce Application",
       "description": "An application that gets products data from Flipkart affiliate API and implements the ecommerce workflow with cart, wishlisting, and buying products.",
       "points": [
         "Implemented while studying android",
         "Used retrofit and room db for network and database calls",
         "Learned dependency injection using dagger along with many architectural patterns"
       ],
-      "tags": [
-        "Android",
-        "Kotlin",
-        "Clean Architecture"
-      ],
+      "tags": ["Android", "Kotlin", "Clean Architecture"],
       "buttons": [
-        {
-          "url": "https://github.com/Subikesh/ECommerceApplication",
-          "text": "Source Code"
-        }
+        { "url": "https://github.com/Subikesh/ECommerceApplication", "text": "Source code" }
       ]
     },
     {
       "title": "Code Database",
+      "image": "/images/code_database.png",
+      "alt": "Code Database",
       "description": "An application to store coding questions and track your progress on the road to become an expert programmer.",
       "points": [
         "Implemented the MVT design pattern in Django, Python and designed the database with MySQL database.",
@@ -35,105 +45,60 @@
         "Created an Android app which consumes the hosted REST API for list, search and user login functionalities.",
         "Hosted it in python-anywhere with MySQL database as an open-source app"
       ],
-      "tags": [
-        "Django",
-        "Django-rest-framework",
-        "CRUD",
-        "PostgreSQL"
-      ],
+      "tags": ["Django", "Django-rest-framework", "CRUD", "PostgreSQL"],
       "buttons": [
-        {
-          "url": "https://github.com/Subikesh/Code-Database",
-          "text": "Source Code"
-        },
-        {
-          "url": "https://github.com/Subikesh/CodeDatabase_android",
-          "text": "Android Source Code"
-        },
-        {
-          "url": "https://codedatabase.pythonanywhere.com/",
-          "text": "View Project"
-        }
+        { "url": "https://github.com/Subikesh/Code-Database",         "text": "Source code" },
+        { "url": "https://github.com/Subikesh/CodeDatabase_android",  "text": "Android Source code" },
+        { "url": "https://codedatabase.pythonanywhere.com/",          "text": "View Project" }
       ]
     },
     {
       "title": "Digit Recognizer",
+      "image": "/images/digits.png",
+      "alt": "Digit recognizer",
       "description": "An app to predict hand-written digits drawn by user using deep learning. The project is done from scratch using numpy and pandas libraries in python.",
-      "tags": [
-        "Django",
-        "Neural Nets",
-        "MNIST Classification"
-      ],
+      "tags": ["Django", "Neural Nets", "MNIST Classification"],
       "buttons": [
-        {
-          "url": "https://github.com/Subikesh/Digit-Recognition",
-          "text": "Source Code"
-        },
-        {
-          "url": "https://subikeshdigits.herokuapp.com/",
-          "text": "View Project"
-        }
+        { "url": "https://github.com/Subikesh/Digit-Recognition", "text": "Source code" },
+        { "url": "https://subikeshdigits.herokuapp.com/",         "text": "View Project" }
       ]
     },
     {
       "title": "Dental Data Statistics",
+      "image": "/images/dentalstats.png",
+      "alt": "Dental Statistics",
       "description": "An application to give a neat GUI for inserting, updating and displaying the data graphically and generating a report from the data given from a dental hospital. The app is currently being used by SRM dental hospital for tracking patient records.",
-      "tags": [
-        "Tkinter",
-        "SQLite",
-        "Report Generation",
-        "Data visualization"
-      ],
+      "tags": ["Tkinter", "SQLite", "Report Generation", "Data visualization"],
       "buttons": [
-        {
-          "url": "https://github.com/Subikesh/DentalDataStatictics",
-          "text": "Source Code"
-        }
+        { "url": "https://github.com/Subikesh/DentalDataStatictics", "text": "Source code" }
       ]
     },
     {
       "title": "Tic-Tac-Toe AI",
+      "image": "/images/tictactoe.png",
+      "alt": "TicTacToe",
       "description": "The game tic-tac-toe for two player and single player - with AI created using minimax algorithm made using python.",
-      "tags": [
-        "Game Theory",
-        "Mini-max"
-      ],
       "buttons": [
-        {
-          "url": "https://github.com/Subikesh/Tic-Tac-Toe",
-          "text": "Source Code"
-        }
+        { "url": "https://github.com/Subikesh/Tic-Tac-Toe", "text": "Source code" }
       ]
     },
     {
       "title": "Minesweeper",
+      "image": "/images/minesweeper.png",
+      "alt": "minesweeper",
       "description": "A strategic single-player game to flag the mines in the board with the clues about neighboring mines. It is created using python in an object-oriented design.",
-      "tags": [
-        "BackTracking",
-        "Tkinter Desktop UI"
-      ],
       "buttons": [
-        {
-          "url": "https://github.com/Subikesh/Minesweeper",
-          "text": "Source Code"
-        }
+        { "url": "https://github.com/Subikesh/Minesweeper", "text": "Source code" }
       ]
     }
   ],
   "resume": [
     {
       "heading": "Languages",
-      "ul": [
-        "Kotlin",
-        "Java",
-        "Python",
-        "HTML and CSS",
-        "JavaScript",
-        "C/C++"
-      ]
+      "ul": ["Kotlin", "Java", "Python", "HTML and CSS", "JavaScript", "C/C++"]
     },
     {
-    "heading": "Experience",
+      "heading": "Experience",
       "list": [
         {
           "heading": "Android Developer - Zoho Corporation",
@@ -190,30 +155,17 @@
           "ul": [
             {
               "title": "Android Development",
-              "ul": [
-                "Dagger 2",
-                "Room DB",
-                "Retrofit",
-                "Clean Architecture"
-              ]
+              "ul": ["Dagger 2", "Room DB", "Retrofit", "Clean Architecture"]
             },
             {
               "title": "Web Framework",
-              "ul": [
-                "Django"
-              ]
+              "ul": ["Django"]
             },
             {
               "title": "Databases",
-              "ul": [
-                "PostgreSQL",
-                "MySQL",
-                "MongoDB"
-              ]
+              "ul": ["PostgreSQL", "MySQL", "MongoDB"]
             },
-            {
-              "title": "Git version control"
-            }
+            { "title": "Git version control" }
           ]
         },
         {

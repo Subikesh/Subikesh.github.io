@@ -1,0 +1,13 @@
+# IDE
+.idea/
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Optional Node artifacts (no package.json by design — see CLAUDE.md)
+node_modules/
