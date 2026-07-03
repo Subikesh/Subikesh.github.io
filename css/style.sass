@@ -18,20 +18,20 @@
   --cream: #F5EDE4
   --sheet: #FDFBF7
   --surface-2: #F1EBE1
-  --line: rgba(20, 20, 43, .13)
+  --line: rgba(32, 27, 21, .13)
   // text
-  --ink: #14142B
-  --ink-muted: #5A5A72
+  --ink: #201B15
+  --ink-muted: #6B6157
   // accents
-  --accent: #6E3FBF
-  --accent-soft: rgba(110, 63, 191, .09)
+  --accent: #C4553B
+  --accent-soft: rgba(196, 85, 59, .09)
   --accent-ink: #FFFFFF
-  --amber: #E0A458
-  --coral: #E8846B
+  --sand: #D9A566
+  --olive: #6B7F3E
   // effects
-  --shadow-sm: 0 2px 8px rgba(20, 20, 43, .06)
-  --shadow-md: 0 10px 30px rgba(20, 20, 43, .10)
-  --shadow-lg: 0 24px 60px rgba(20, 20, 43, .16)
+  --shadow-sm: 0 2px 8px rgba(32, 27, 21, .06)
+  --shadow-md: 0 10px 30px rgba(32, 27, 21, .10)
+  --shadow-lg: 0 24px 60px rgba(32, 27, 21, .16)
   // type
   --font-display: "Bricolage Grotesque", "Segoe UI", sans-serif
   --font-body: "Instrument Sans", system-ui, -apple-system, sans-serif
@@ -47,17 +47,17 @@
   --dur: .55s
 
 [data-theme="dark"]
-  --cream: #141119
-  --sheet: #1E1B26
-  --surface-2: #282433
-  --line: rgba(239, 234, 245, .14)
-  --ink: #EFEAF5
-  --ink-muted: #A9A3B8
-  --accent: #A78BFA
-  --accent-soft: rgba(167, 139, 250, .14)
-  --accent-ink: #17142A
-  --amber: #C9964F
-  --coral: #D07A63
+  --cream: #171310
+  --sheet: #201B18
+  --surface-2: #2B2520
+  --line: rgba(242, 237, 232, .14)
+  --ink: #F2EDE8
+  --ink-muted: #B3A99F
+  --accent: #E08D74
+  --accent-soft: rgba(224, 141, 116, .14)
+  --accent-ink: #2B1710
+  --sand: #C9A05C
+  --olive: #97A86B
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, .25)
   --shadow-md: 0 10px 30px rgba(0, 0, 0, .35)
   --shadow-lg: 0 24px 60px rgba(0, 0, 0, .5)
@@ -367,7 +367,7 @@ img
     width: 45%
     aspect-ratio: 1
     border-radius: 50%
-    background: var(--amber)
+    background: var(--sand)
     opacity: .85
 
   &::after
@@ -378,7 +378,7 @@ img
     width: 42%
     aspect-ratio: 1
     border-radius: 50%
-    background: var(--coral)
+    background: var(--olive)
     opacity: .8
 
 .hero-phone
@@ -386,9 +386,9 @@ img
   z-index: 1
   width: min(230px, 55%)
   aspect-ratio: 9 / 19
-  border: 9px solid #171420
+  border: 9px solid #1C1714
   border-radius: 34px
-  background: #171420
+  background: #1C1714
   box-shadow: var(--shadow-lg)
   animation: phone-float 7s ease-in-out infinite
 
@@ -413,7 +413,7 @@ img
     width: 9px
     height: 9px
     border-radius: 50%
-    background: #171420
+    background: #1C1714
 
 .hp-statusbar
   position: absolute
@@ -447,12 +447,12 @@ img
     color: var(--accent)
 
   &.hp-tile--b
-    background: color-mix(in srgb, var(--amber) 22%, transparent)
-    color: var(--amber)
+    background: color-mix(in srgb, var(--sand) 22%, transparent)
+    color: var(--sand)
 
   &.hp-tile--c
-    background: color-mix(in srgb, var(--coral) 22%, transparent)
-    color: var(--coral)
+    background: color-mix(in srgb, var(--olive) 22%, transparent)
+    color: var(--olive)
 
   &.hp-tile--d
     background: var(--surface-2)
@@ -561,9 +561,9 @@ img
 
 // Android phone frame
 .device--phone
-  border: 8px solid #171420
+  border: 8px solid #1C1714
   border-radius: 32px
-  background: #171420
+  background: #1C1714
   box-shadow: var(--shadow-md)
 
   .device-screen
@@ -583,8 +583,8 @@ img
     width: 9px
     height: 9px
     border-radius: 50%
-    background: #171420
-    box-shadow: 0 0 0 2px rgba(23, 20, 32, .35)
+    background: #1C1714
+    box-shadow: 0 0 0 2px rgba(28, 23, 20, .35)
     z-index: 2
 
   // gesture bar
@@ -614,7 +614,7 @@ img
     display: block
     height: 30px
     border-bottom: 1px solid var(--line)
-    background-image: radial-gradient(circle 4px at 18px 15px, var(--coral) 4px, transparent 5px), radial-gradient(circle 4px at 34px 15px, var(--amber) 4px, transparent 5px), radial-gradient(circle 4px at 50px 15px, var(--accent) 4px, transparent 5px)
+    background-image: radial-gradient(circle 4px at 18px 15px, var(--olive) 4px, transparent 5px), radial-gradient(circle 4px at 34px 15px, var(--sand) 4px, transparent 5px), radial-gradient(circle 4px at 50px 15px, var(--accent) 4px, transparent 5px)
 
   .device-screen
     aspect-ratio: 16 / 10
@@ -799,7 +799,7 @@ img
       width: 8px
       height: 8px
       border-radius: 50%
-      background: var(--amber)
+      background: var(--sand)
 
 .skills-group + .skills-group
   margin-top: 1.8rem
