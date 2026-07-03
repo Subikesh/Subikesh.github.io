@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subikesh | Portfolio</title>
 
-    <!-- SEO + social previews — pageTitle/description/social copy is also driven from data.json -->
-    <meta name="description" content="Personal portfolio of Subikesh P S — Android developer at Zoho Corporation.">
-    <meta name="theme-color" content="#38a7f1">
+    <!-- SEO + social previews — pageTitle/description copy is also driven from data.json; keep in sync -->
+    <meta name="description" content="Personal portfolio of Subikesh P S — Software Engineer 2 (Android) at Intuit, working on Kotlin Multiplatform, Jetpack Compose, and AI-powered experiences.">
+    <meta name="theme-color" content="#F5EDE4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1E1B26" media="(prefers-color-scheme: dark)">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Subikesh | Portfolio">
-    <meta property="og:description" content="Personal portfolio of Subikesh P S — Android developer at Zoho Corporation.">
+    <meta property="og:description" content="Personal portfolio of Subikesh P S — Software Engineer 2 (Android) at Intuit, working on Kotlin Multiplatform, Jetpack Compose, and AI-powered experiences.">
     <meta property="og:url" content="https://subikesh.com/">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Subikesh | Portfolio">
-    <meta name="twitter:description" content="Personal portfolio of Subikesh P S — Android developer at Zoho Corporation.">
+    <meta name="twitter:description" content="Personal portfolio of Subikesh P S — Software Engineer 2 (Android) at Intuit, working on Kotlin Multiplatform, Jetpack Compose, and AI-powered experiences.">
 
     <!-- Favicon files -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
@@ -22,104 +23,135 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
     <link rel="manifest" href="favicon_io/site.webmanifest">
 
-    <!-- CSS files -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Theme boot: must run BEFORE the stylesheet loads so dark mode paints correctly (no FOUC) -->
+    <script>
+        (t => document.documentElement.dataset.theme =
+            t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+        )(localStorage.getItem("theme"));
+    </script>
 
     <!-- Preconnects -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://kit.fontawesome.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Font awesome kit -->
     <script src="https://kit.fontawesome.com/37391a116f.js" crossorigin="anonymous"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
 </head>
-<body class="js-loader">
-    <!-- Loader -->
-    <div class="preloader"></div>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Main Body — name/designation/social rendered from data.meta -->
-    <div class="container">
-        <div class="name-header">
-            <div class="display-4">
-                <span class="fadefirst">Hi</span><span class="fadesecond">, I am</span>
-            </div>
-            <h1 class="display-1 fadesecond">Subikesh <span class="non-overflow">P S</span></h1>
-        </div>
-        <div class="designation fadethird">Software developer</div>
-        <div class="ruler"></div>
-        <div class="social">
-            Connect with me:
-            <span class="non-overflow"></span>
-        </div>
-    </div> <!-- End main body -->
+    <div class="sheet">
+        <header class="site-header">
+            <a class="brand" href="#hero">Subikesh<span class="brand-dot">.</span></a>
 
-    <!-- Navigation Cards -->
-    <div class="nav-cards">
-        <div id="info-card" role="button" tabindex="0" title="Icons info">
-            <a class="fadesecond icons fa fa-info-circle" aria-hidden="true"></a>
-        </div>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
 
-        <!-- About card -->
-        <div id="about-card" class="center-card" role="button" tabindex="0" aria-label="About">
-            <i class="icons fa fa-address-card"></i>
-            <h3 class="tag-title">About</h3>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <h3 class="section-title">About</h3>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="card-content" data-render="about"></div>
+            <nav id="site-nav" class="site-nav" aria-label="Primary">
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#work">Work</a>
+                <a class="nav-link" href="#resume">Resume</a>
+                <a class="nav-link" href="#contact">Contact</a>
+                <span class="nav-social" data-render="nav-social"></span>
+                <button id="theme-toggle" class="qs-tile" aria-pressed="false" aria-label="Toggle dark theme">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <span class="qs-tile-label">Dark theme</span>
+                </button>
+            </nav>
+        </header>
+
+        <main id="main">
+            <!-- Hero — name/designation rendered from data.meta; static copy is the SEO fallback -->
+            <section id="hero" class="hero">
+                <div class="hero-copy">
+                    <p class="eyebrow">Hello, I am</p>
+                    <h1 class="hero-name">Subikesh <span class="no-wrap">P S</span></h1>
+                    <p class="designation" data-render="designation">Software Engineer 2 - Android</p>
+                    <div class="hero-actions">
+                        <a class="btn btn--primary" href="#work">See my work</a>
+                        <a class="btn btn--ghost" href="#contact">Get in touch</a>
                     </div>
                 </div>
-            </div>
-        </div> <!-- End About card -->
 
-        <!-- Projects card -->
-        <div id="project-card" class="center-card" role="button" tabindex="0" aria-label="Projects">
-            <i class="icons fa fa-code"></i>
-            <h3 class="tag-title">Projects</h3>
-            <div class="card-content container">
-                <h3 class="section-title">Projects</h3>
-                <div class="row card-group" data-render="projects"></div>
-            </div>
-        </div> <!-- End project card -->
-
-        <!-- Resume card -->
-        <div id="resume-card" class="center-card overflow-hidden" role="button" tabindex="0" aria-label="Resume">
-            <i class="icons fa fa-poll-h"></i>
-            <h3 class="tag-title">Resume</h3>
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <h3 class="section-title">Resume</h3>
-                    <div class="card-content container">
-                        <a id="resume-download" href="Resume.pdf" target="_blank" rel="noopener" class="resume-btn btn btn-primary">Resume <i class="fas fa-download"></i></a>
-                        <div data-render="resume-left"></div>
+                <!-- Decorative Android home-screen composition, pure CSS -->
+                <div class="hero-panel" aria-hidden="true">
+                    <div class="hero-phone">
+                        <div class="hero-phone-screen">
+                            <div class="hp-statusbar"><span></span><span></span></div>
+                            <div class="hp-tiles">
+                                <div class="hp-tile hp-tile--a"><i class="fab fa-android"></i></div>
+                                <div class="hp-tile hp-tile--b"><i class="fas fa-code"></i></div>
+                                <div class="hp-tile hp-tile--c"><i class="fas fa-mobile-alt"></i></div>
+                                <div class="hp-tile hp-tile--d"><i class="fas fa-brain"></i></div>
+                            </div>
+                            <div class="hp-search"></div>
+                            <div class="hp-gesture"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="card-content container" data-render="resume-right"></div>
+
+                <a class="scroll-hint" href="#about" aria-label="Scroll to about">
+                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                </a>
+            </section>
+
+            <section id="about" class="section reveal">
+                <p class="eyebrow">About</p>
+                <h2>A little about me</h2>
+                <div class="about-body" data-render="about"></div>
+            </section>
+
+            <section id="work" class="section reveal">
+                <p class="eyebrow">Work</p>
+                <h2>Selected projects</h2>
+                <div class="projects" data-render="projects"></div>
+            </section>
+
+            <section id="resume" class="section reveal">
+                <p class="eyebrow">Resume</p>
+                <h2>Experience &amp; skills</h2>
+                <a id="resume-download" class="btn btn--primary resume-btn" href="Resume.pdf" target="_blank" rel="noopener">
+                    Download resume <i class="fas fa-download" aria-hidden="true"></i>
+                </a>
+                <div class="resume-grid" data-render="resume"></div>
+            </section>
+
+            <section id="contact" class="section reveal">
+                <p class="eyebrow">Contact</p>
+                <h2>Say hello</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <p>Want to talk about Android, AI, or a project you have in mind? Drop a message through the form or reach me directly.</p>
+                        <div class="contact-social" data-render="contact-social"></div>
+                        <button id="copy-email" class="btn btn--ghost" hidden>
+                            <i class="far fa-copy" aria-hidden="true"></i> Copy email
+                        </button>
+                    </div>
+                    <div class="form-card">
+                        <iframe id="contact-form" src="about:blank" title="Contact form" loading="lazy">Loading…</iframe>
+                    </div>
                 </div>
-            </div>
-        </div> <!-- End resume card -->
+            </section>
+        </main>
 
-        <!-- Contact card -->
-        <div id="contact-card" class="center-card" role="button" tabindex="0" aria-label="Contact">
-            <i class="icons fa fa-phone-alt"></i>
-            <h3 class="tag-title">Contact</h3>
-            <iframe id="contact-form" class="google-form" src="about:blank" width="100%" height="100%" style="border:0;" title="Contact form">Loading…</iframe>
-        </div> <!-- End contact card -->
-    </div> <!-- End Navigation cards -->
+        <footer class="site-footer">
+            <span>Subikesh P S · <span id="footer-year"></span></span>
+            <span class="footer-social" data-render="footer-social"></span>
+        </footer>
+    </div>
 
-    <script src="js/script.js"></script>
+    <button id="fab" class="fab" aria-label="Go to contact" hidden>
+        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+    </button>
+    <div id="toast-region" role="status" aria-live="polite"></div>
 </body>
 </html>

@@ -1,11 +1,18 @@
-// Card identifiers — KEEP IN SYNC with $cards in css/style.sass (line 6).
-// Order determines DOM id (e.g. "about" -> #about-card) and matches the SASS loop.
-const CARDS = ["about", "project", "resume", "contact"];
+// Portfolio — renders content from data.json into [data-render] containers and
+// wires the page interactions (theme, nav, reveals, FAB, toasts).
+//
+// Section ids (hero/about/work/resume/contact) are the sync contract with
+// index.html nav links and css/style.sass — keep them aligned when renaming.
+
+const SECTION_IDS = ["about", "work", "resume", "contact"];
 
 document.addEventListener("DOMContentLoaded", () => {
     // Wire interactions immediately — they don't depend on data and should work
     // even if the fetch below fails (e.g. opening index.html via file://).
-    wireInteractions();
+    initTheme();
+    initNav();
+    initFab();
+    initFooterYear();
 
     fetch("data.json")
         .then(r => r.json())
@@ -14,15 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
             renderAbout(data.about);
             renderProjects(data.projects);
             renderResume(data.resume);
-            initTooltips();
-            hidePreloader();
+            initCopyEmail(data.meta);
+            initReveals();
         })
         .catch(err => {
             console.error("Failed to load portfolio data — content sections will be empty. If you opened index.html via file://, run `python -m http.server 8000` and visit http://localhost:8000/ instead.", err);
-            initTooltips();
-            hidePreloader();
+            initReveals();
         });
 });
+
+// ---------------------------------------------------------------------------
+// Renderers
+// ---------------------------------------------------------------------------
 
 function renderMeta(meta) {
     if (!meta) return;
@@ -34,26 +44,23 @@ function renderMeta(meta) {
         if (descTag) descTag.setAttribute("content", meta.description);
     }
 
-    const h1 = document.querySelector(".name-header h1");
+    const h1 = document.querySelector(".hero-name");
     if (h1 && meta.name) {
         const parts = meta.name.trim().split(/\s+/);
         const first = parts.shift();
         const rest = parts.join(" ");
         h1.innerHTML = rest
-            ? `${escapeHtml(first)} <span class="non-overflow">${escapeHtml(rest)}</span>`
+            ? `${escapeHtml(first)} <span class="no-wrap">${escapeHtml(rest)}</span>`
             : escapeHtml(first);
     }
 
-    const designation = document.querySelector(".designation");
+    const designation = document.querySelector('[data-render="designation"]');
     if (designation && meta.designation) designation.textContent = meta.designation;
 
-    const socialWrap = document.querySelector(".social .non-overflow");
-    if (socialWrap && Array.isArray(meta.social)) {
-        socialWrap.innerHTML = meta.social.map(s => (
-            `<a href="${escapeAttr(s.url)}" target="_blank" rel="noopener" `
-            + `data-bs-toggle="tooltip" data-bs-placement="bottom" title="${escapeAttr(s.label)}">`
-            + `<span class="${escapeAttr(s.icon)}"></span></a>`
-        )).join("   ");
+    if (Array.isArray(meta.social)) {
+        const html = socialLinksHtml(meta.social);
+        document.querySelectorAll('[data-render="nav-social"], [data-render="contact-social"], [data-render="footer-social"]')
+            .forEach(el => { el.innerHTML = html; });
     }
 
     const resumeBtn = document.getElementById("resume-download");
@@ -61,6 +68,14 @@ function renderMeta(meta) {
 
     const contactForm = document.getElementById("contact-form");
     if (contactForm && meta.contactFormUrl) contactForm.setAttribute("src", meta.contactFormUrl);
+}
+
+function socialLinksHtml(social) {
+    return social.map(s => (
+        `<a href="${escapeAttr(s.url)}" target="_blank" rel="noopener" `
+        + `title="${escapeAttr(s.label)}" aria-label="${escapeAttr(s.label)}">`
+        + `<span class="${escapeAttr(s.icon)}" aria-hidden="true"></span></a>`
+    )).join("");
 }
 
 function renderAbout(about) {
@@ -74,202 +89,290 @@ function renderProjects(projects) {
     if (!el || !Array.isArray(projects)) return;
 
     el.innerHTML = projects.map(p => {
+        const frame = p.frame === "phone" ? "phone" : "browser";
         const img = p.image
-            ? `<img src="${escapeAttr(p.image)}" alt="${escapeAttr(p.alt || p.title || "")}" loading="lazy" class="card-img-top">`
+            ? `<div class="device device--${frame}"><div class="device-screen">`
+              + `<img src="${escapeAttr(p.image)}" alt="${escapeAttr(p.alt || p.title || "")}" loading="lazy">`
+              + `</div></div>`
             : "";
         const points = Array.isArray(p.points) && p.points.length
-            ? `<ul>${p.points.map(pt => `<li>${escapeHtml(pt)}</li>`).join("")}</ul>`
+            ? `<ul class="project-points">${p.points.map(pt => `<li>${escapeHtml(pt)}</li>`).join("")}</ul>`
             : "";
         const tags = Array.isArray(p.tags) && p.tags.length
-            ? p.tags.map(t => `<button class="btn btn-sm text-dark"> ${escapeHtml(t)}</button>`).join("")
+            ? `<ul class="chips">${p.tags.map(t => `<li class="chip">${escapeHtml(t)}</li>`).join("")}</ul>`
             : "";
-        const buttons = Array.isArray(p.buttons)
-            ? p.buttons.map(b =>
-                `<a href="${escapeAttr(b.url)}" target="_blank" rel="noopener" class="btn btn-outline-light">${escapeHtml(b.text)}</a>`
-              ).join("")
+        const buttons = Array.isArray(p.buttons) && p.buttons.length
+            ? `<div class="project-links">${p.buttons.map(b =>
+                `<a class="btn btn--ghost btn--sm" href="${escapeAttr(b.url)}" target="_blank" rel="noopener">${escapeHtml(b.text)}</a>`
+              ).join("")}</div>`
             : "";
 
-        return `
-            <div class="col-md-4">
-                <div class="card text-white bg-dark mb-3">
-                    ${img}
-                    <div class="card-body">
-                        <h4 class="card-title">${escapeHtml(p.title || "")}</h4>
-                        <div class="card-text">
-                            ${escapeHtml(p.description || "")}
-                            ${points}
-                            ${tags}
-                        </div>
-                        ${buttons}
-                    </div>
-                </div>
-            </div>
-        `;
+        return `<article class="project reveal${p.featured ? " project--featured" : ""}">`
+            + img
+            + `<div class="project-info">`
+            + `<h3>${escapeHtml(p.title || "")}</h3>`
+            + (p.description ? `<p>${escapeHtml(p.description)}</p>` : "")
+            + points + tags + buttons
+            + `</div></article>`;
     }).join("");
 }
 
 function renderResume(resume) {
-    const leftEl = document.querySelector('[data-render="resume-left"]');
-    const rightEl = document.querySelector('[data-render="resume-right"]');
-    if (!leftEl || !rightEl || !Array.isArray(resume)) return;
+    const el = document.querySelector('[data-render="resume"]');
+    if (!el || !Array.isArray(resume)) return;
 
-    let left = "";
-    let right = "";
+    const skills = resume.filter(s => s.heading === "Skills");
+    const rest = resume.filter(s => s.heading !== "Skills");
 
-    for (const section of resume) {
-        const heading = section.heading || "";
-        const target = heading === "Skills" ? "right" : "left";
-        const html = renderResumeSection(section);
-        if (target === "right") right += html;
-        else left += html;
-    }
-
-    leftEl.innerHTML = left;
-    rightEl.innerHTML = right;
+    el.innerHTML = `<div class="resume-main">${rest.map(renderResumeSection).join("")}</div>`
+        + `<div class="resume-skills">${skills.map(renderResumeSection).join("")}</div>`;
 }
 
 function renderResumeSection(section) {
-    let html = `<h3>${escapeHtml(section.heading)}</h3><hr>`;
-
-    if (Array.isArray(section.ul)) {
-        html += `<ul>${section.ul.map(item => `<li>${renderResumeLeaf(item)}</li>`).join("")}</ul>`;
+    let body = "";
+    if (section.heading === "Experience" && Array.isArray(section.list)) {
+        body = `<ol class="timeline">${section.list.map(renderExperienceJob).join("")}</ol>`;
+    } else if (section.heading === "Skills" && Array.isArray(section.list)) {
+        body = section.list.map(renderSkillsGroup).join("");
+    } else if (Array.isArray(section.ul)) {
+        body = `<ul class="edu-list">${section.ul.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
     }
-
-    if (Array.isArray(section.list)) {
-        if (section.heading === "Skills") {
-            // Skills uses h4 sub-headings, no outer <ul>
-            html += section.list.map(sub => renderSkillsGroup(sub)).join("");
-        } else {
-            // Experience uses an outer <ul> of jobs
-            html += `<ul>${section.list.map(job => `<li>${renderExperienceJob(job)}</li>`).join("")}</ul>`;
-        }
-    }
-
-    return html;
-}
-
-function renderSkillsGroup(group) {
-    let html = `<h4>${escapeHtml(group.heading)}</h4><ul>`;
-    if (Array.isArray(group.ul)) {
-        for (const item of group.ul) {
-            if (typeof item === "string") {
-                // NOTE: skill strings may contain inline <i> icon HTML — see CLAUDE.md
-                html += `<li>${item}</li>`;
-            } else if (item && Array.isArray(item.ul)) {
-                html += `<li>${escapeHtml(item.title || "")}<ul>`
-                    + item.ul.map(leaf => `<li>${escapeHtml(leaf)}</li>`).join("")
-                    + `</ul></li>`;
-            } else if (item && item.title) {
-                html += `<li>${escapeHtml(item.title)}</li>`;
-            }
-        }
-    }
-    html += `</ul>`;
-    return html;
+    return `<div class="resume-block"><h3>${escapeHtml(section.heading)}</h3>${body}</div>`;
 }
 
 function renderExperienceJob(job) {
-    let html = `<b>${escapeHtml(job.heading || "")}</b><br>`
-        + `<span class="small">${escapeHtml(job.period || "")}</span>`;
-    if (job.content) html += `<p>${escapeHtml(job.content)}</p>`;
-    if (Array.isArray(job.ol)) {
-        html += `<ol>` + job.ol.map(sub => (
-            `<li><b>${escapeHtml(sub.title || "")}</b><ul>`
-            + (sub.ul || []).map(pt => `<li>${escapeHtml(pt)}</li>`).join("")
-            + `</ul></li>`
-        )).join("") + `</ol>`;
-    }
-    if (Array.isArray(job.ul)) {
-        html += `<ul>` + job.ul.map(pt => `<li>${escapeHtml(pt)}</li>`).join("") + `</ul>`;
-    }
-    return html;
+    const nested = Array.isArray(job.ol) && job.ol.length
+        ? `<ol class="job-projects">${job.ol.map(proj => (
+            `<li><strong>${escapeHtml(proj.title || "")}</strong>`
+            + (Array.isArray(proj.ul) ? `<ul>${proj.ul.map(li => `<li>${escapeHtml(li)}</li>`).join("")}</ul>` : "")
+            + `</li>`
+          )).join("")}</ol>`
+        : "";
+    return `<li><h4 class="job-title">${escapeHtml(job.heading || "")}</h4>`
+        + (job.period ? `<span class="period">${escapeHtml(job.period)}</span>` : "")
+        + nested + `</li>`;
 }
 
-function renderResumeLeaf(item) {
-    // Top-level section.ul entries are simple strings (e.g. Languages list)
-    return typeof item === "string" ? escapeHtml(item) : "";
+function renderSkillsGroup(group) {
+    const items = Array.isArray(group.ul) ? group.ul.map(item => {
+        if (item && typeof item === "object") {
+            // Nested group, e.g. Dependency Injection -> Dagger/Hilt/Koin
+            const children = Array.isArray(item.ul)
+                ? item.ul.map(c => `<li class="chip">${escapeHtml(c)}</li>`).join("")
+                : "";
+            return `<li class="chip-group"><span class="chip-group-title">${escapeHtml(item.title || "")}</span>`
+                + `<ul class="chips">${children}</ul></li>`;
+        }
+        // Skill strings are trusted data.json content and may intentionally
+        // contain inline icon markup (e.g. <i class="fab fa-...">) — rendered
+        // via innerHTML on purpose. Do NOT put untrusted input in these.
+        return `<li class="chip">${item}</li>`;
+    }).join("") : "";
+    return `<div class="skills-group"><h4>${escapeHtml(group.heading || "")}</h4>`
+        + `<ul class="chips chips--skills">${items}</ul></div>`;
 }
 
-function wireInteractions() {
-    const cards = CARDS
-        .map(name => document.getElementById(name + "-card"))
-        .filter(Boolean);
-    const info = document.getElementById("info-card");
+// ---------------------------------------------------------------------------
+// Theme (dark mode)
+// ---------------------------------------------------------------------------
 
-    function setActive(targetCard) {
-        for (const card of cards) {
-            const title = card.querySelector(".section-title");
-            if (card === targetCard) {
-                card.classList.add("active");
-                if (title) title.classList.add("display-3");
-            } else {
-                card.classList.remove("active");
-                if (title) title.classList.remove("display-3");
-            }
-        }
-    }
-
-    function infoWalkthrough() {
-        cards.forEach((card, i) => {
-            setTimeout(() => {
-                cards.forEach(c => c.classList.remove("hovered"));
-                card.classList.add("hovered");
-            }, i * 900);
-        });
-        setTimeout(() => {
-            cards.forEach(c => c.classList.remove("hovered"));
-        }, cards.length * 900);
-    }
-
-    document.addEventListener("click", (event) => {
-        if (info && info.contains(event.target)) {
-            infoWalkthrough();
-        }
-        let clicked = null;
-        for (const card of cards) {
-            if (card.contains(event.target)) { clicked = card; break; }
-        }
-        setActive(clicked);
-    });
-
-    const activateOnKey = (el) => {
-        el.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                el.click();
-            }
-        });
+function initTheme() {
+    const toggle = document.getElementById("theme-toggle");
+    const apply = theme => {
+        document.documentElement.dataset.theme = theme;
+        if (toggle) toggle.setAttribute("aria-pressed", String(theme === "dark"));
+        const icon = toggle && toggle.querySelector("i");
+        if (icon) icon.className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
+        const label = toggle && toggle.querySelector(".qs-tile-label");
+        if (label) label.textContent = theme === "dark" ? "Light theme" : "Dark theme";
     };
-    cards.forEach(activateOnKey);
-    if (info) activateOnKey(info);
+
+    // The boot script in <head> already set data-theme before first paint.
+    apply(document.documentElement.dataset.theme || "light");
+
+    if (toggle) {
+        toggle.addEventListener("click", () => {
+            const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+            localStorage.setItem("theme", next);
+            apply(next);
+        });
+    }
+
+    // Follow OS changes only while the user hasn't chosen manually.
+    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
+        if (!localStorage.getItem("theme")) apply(e.matches ? "dark" : "light");
+    });
 }
 
-function initTooltips() {
-    if (!window.bootstrap || !window.bootstrap.Tooltip) return;
-    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
-    const info = document.getElementById("info-card");
-    if (info) new bootstrap.Tooltip(info);
+// ---------------------------------------------------------------------------
+// Nav (mobile toggle, header shrink, active link highlight)
+// ---------------------------------------------------------------------------
+
+function initNav() {
+    const header = document.querySelector(".site-header");
+    const toggle = document.querySelector(".nav-toggle");
+    const nav = document.getElementById("site-nav");
+
+    const closeNav = () => {
+        if (!nav || !toggle) return;
+        nav.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("nav-locked");
+    };
+
+    if (toggle && nav) {
+        toggle.addEventListener("click", () => {
+            const open = nav.classList.toggle("is-open");
+            toggle.setAttribute("aria-expanded", String(open));
+            document.body.classList.toggle("nav-locked", open);
+        });
+        nav.addEventListener("click", e => {
+            if (e.target.closest("a")) closeNav();
+        });
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") closeNav();
+        });
+    }
+
+    if (header) {
+        const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 24);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+    }
+
+    // Highlight the nav link of the section currently in view.
+    const links = new Map(SECTION_IDS.map(id => [
+        id, document.querySelector(`.nav-link[href="#${id}"]`)
+    ]));
+    const sections = SECTION_IDS.map(id => document.getElementById(id)).filter(Boolean);
+    if (sections.length && "IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const link = links.get(entry.target.id);
+                if (!link) return;
+                if (entry.isIntersecting) {
+                    links.forEach(l => l && l.classList.remove("is-active"));
+                    link.classList.add("is-active");
+                }
+            });
+        }, { rootMargin: "-40% 0px -55% 0px" });
+        sections.forEach(s => observer.observe(s));
+    }
 }
 
-function hidePreloader() {
-    const el = document.querySelector(".preloader");
-    if (!el) return;
-    el.style.transition = "opacity 0.6s ease";
-    el.style.opacity = "0";
-    setTimeout(() => {
-        el.style.display = "none";
-        document.body.classList.remove("js-loader");
-    }, 600);
+// ---------------------------------------------------------------------------
+// Scroll reveals
+// ---------------------------------------------------------------------------
+
+function initReveals() {
+    const targets = document.querySelectorAll(".reveal");
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduced || !("IntersectionObserver" in window)) {
+        targets.forEach(el => el.classList.add("is-visible"));
+        return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+    targets.forEach(el => observer.observe(el));
 }
+
+// ---------------------------------------------------------------------------
+// FAB (floating action button -> contact)
+// ---------------------------------------------------------------------------
+
+function initFab() {
+    const fab = document.getElementById("fab");
+    const hero = document.getElementById("hero");
+    const contact = document.getElementById("contact");
+    if (!fab || !hero || !contact) return;
+
+    fab.hidden = false;
+    if ("IntersectionObserver" in window) {
+        new IntersectionObserver(([entry]) => {
+            fab.classList.toggle("is-visible", !entry.isIntersecting);
+        }).observe(hero);
+    } else {
+        fab.classList.add("is-visible");
+    }
+
+    fab.addEventListener("click", () => {
+        const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        contact.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+    });
+}
+
+// ---------------------------------------------------------------------------
+// Toast (Android-style)
+// ---------------------------------------------------------------------------
+
+let toastTimer = null;
+
+function toast(message) {
+    const region = document.getElementById("toast-region");
+    if (!region) return;
+    region.innerHTML = "";
+    clearTimeout(toastTimer);
+
+    const pill = document.createElement("div");
+    pill.className = "toast";
+    pill.textContent = message;
+    region.appendChild(pill);
+
+    toastTimer = setTimeout(() => {
+        pill.classList.add("is-leaving");
+        pill.addEventListener("animationend", () => pill.remove(), { once: true });
+    }, 2500);
+}
+
+// ---------------------------------------------------------------------------
+// Copy email
+// ---------------------------------------------------------------------------
+
+function initCopyEmail(meta) {
+    const btn = document.getElementById("copy-email");
+    if (!btn || !meta || !Array.isArray(meta.social)) return;
+
+    const mail = meta.social.find(s => typeof s.url === "string" && s.url.startsWith("mailto:"));
+    if (!mail || !navigator.clipboard) return; // keep the button hidden; mailto link still works
+
+    const email = mail.url.replace(/^mailto:/, "");
+    btn.hidden = false;
+    btn.addEventListener("click", () => {
+        navigator.clipboard.writeText(email)
+            .then(() => toast("Email copied"))
+            .catch(() => toast(email));
+    });
+}
+
+// ---------------------------------------------------------------------------
+// Misc
+// ---------------------------------------------------------------------------
+
+function initFooterYear() {
+    const el = document.getElementById("footer-year");
+    if (el) el.textContent = new Date().getFullYear();
+}
+
+// ---------------------------------------------------------------------------
+// Escaping helpers
+// ---------------------------------------------------------------------------
 
 function escapeHtml(str) {
-    if (str == null) return "";
     return String(str)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
+        .replace(/'/g, "&#039;");
 }
 
 function escapeAttr(str) {

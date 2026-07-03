@@ -23,6 +23,8 @@
       "title": "NewsBuddy - AI News Companion",
       "image": "/images/newsbuddy.png",
       "alt": "NewsBuddy",
+      "frame": "phone",
+      "featured": true,
       "description": "A cross-platform AI news companion app that delivers daily briefings across 8 categories with follow-up conversational Q&A and source attribution.",
       "points": [
         "Built and shipped using Kotlin Multiplatform and Jetpack Compose, with AI-generated daily briefings and conversational Q&A backed by source attribution.",
@@ -39,6 +41,7 @@
       "title": "Ecommerce Application",
       "image": "/images/ecommerce_app.jpeg",
       "alt": "Ecommerce Application",
+      "frame": "phone",
       "description": "An application that gets products data from Flipkart affiliate API and implements the ecommerce workflow with cart, wishlisting, and buying products.",
       "points": [
         "Implemented while studying android",
@@ -54,6 +57,7 @@
       "title": "Code Database",
       "image": "/images/code_database.png",
       "alt": "Code Database",
+      "frame": "browser",
       "description": "An application to store coding questions and track your progress on the road to become an expert programmer.",
       "points": [
         "Implemented the MVT design pattern in Django, Python and designed the database with MySQL database.",
@@ -72,6 +76,7 @@
       "title": "Digit Recognizer",
       "image": "/images/digits.png",
       "alt": "Digit recognizer",
+      "frame": "browser",
       "description": "An app to predict hand-written digits drawn by user using deep learning. The project is done from scratch using numpy and pandas libraries in python.",
       "tags": ["Django", "Neural Nets", "MNIST Classification"],
       "buttons": [
@@ -83,6 +88,7 @@
       "title": "Dental Data Statistics",
       "image": "/images/dentalstats.png",
       "alt": "Dental Statistics",
+      "frame": "browser",
       "description": "An application to give a neat GUI for inserting, updating and displaying the data graphically and generating a report from the data given from a dental hospital. The app is currently being used by SRM dental hospital for tracking patient records.",
       "tags": ["Tkinter", "SQLite", "Report Generation", "Data visualization"],
       "buttons": [
@@ -93,6 +99,7 @@
       "title": "Tic-Tac-Toe AI",
       "image": "/images/tictactoe.png",
       "alt": "TicTacToe",
+      "frame": "browser",
       "description": "The game tic-tac-toe for two player and single player - with AI created using minimax algorithm made using python.",
       "buttons": [
         { "url": "https://github.com/Subikesh/Tic-Tac-Toe", "text": "Source code" }
@@ -102,6 +109,7 @@
       "title": "Minesweeper",
       "image": "/images/minesweeper.png",
       "alt": "minesweeper",
+      "frame": "browser",
       "description": "A strategic single-player game to flag the mines in the board with the clues about neighboring mines. It is created using python in an object-oriented design.",
       "buttons": [
         { "url": "https://github.com/Subikesh/Minesweeper", "text": "Source code" }

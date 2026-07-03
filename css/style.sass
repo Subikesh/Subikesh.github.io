@@ -1,313 +1,1121 @@
-// Variables
-@use 'sass:list'
-$bgColor: rgb(56, 167, 241)
-$cardColors: #f78888, #ffd254, #90ccf4, #5da2d5
-$top-padding: 20vh
-$cards: about, project, resume, contact
+// ============================================================================
+// Portfolio — framed-sheet single page
+// Compile: npx sass --no-source-map css/style.sass css/style.css
+//
+// Architecture notes:
+// - All theme values are CSS custom properties (NOT Sass vars) so dark mode
+//   can switch at runtime via [data-theme] on <html> (set by the inline boot
+//   script in index.html <head> before this stylesheet paints).
+// - Section ids (hero/about/work/resume/contact) are the sync contract with
+//   index.html nav links and js/script.js (initNav, initFab).
+// ============================================================================
 
-// Preloader
-.preloader
-    position: fixed
-    left: 0px
-    top: 0px
-    width: 100%
-    height: 100%
-    z-index: 9999
-    background: url(/images/loader.gif) center no-repeat #fff
+// ---------------------------------------------------------------------------
+// 1. Tokens
+// ---------------------------------------------------------------------------
+:root
+  // surfaces
+  --cream: #F5EDE4
+  --sheet: #FDFBF7
+  --surface-2: #F1EBE1
+  --line: rgba(20, 20, 43, .13)
+  // text
+  --ink: #14142B
+  --ink-muted: #5A5A72
+  // accents
+  --accent: #4B3FBF
+  --accent-soft: rgba(75, 63, 191, .09)
+  --accent-ink: #FFFFFF
+  --amber: #E0A458
+  --coral: #E8846B
+  // effects
+  --shadow-sm: 0 2px 8px rgba(20, 20, 43, .06)
+  --shadow-md: 0 10px 30px rgba(20, 20, 43, .10)
+  --shadow-lg: 0 24px 60px rgba(20, 20, 43, .16)
+  // type
+  --font-display: "Bricolage Grotesque", "Segoe UI", sans-serif
+  --font-body: "Instrument Sans", system-ui, -apple-system, sans-serif
+  // layout
+  --frame-pad: clamp(14px, 2.5vw, 36px)
+  --radius-sheet: clamp(16px, 2.5vw, 28px)
+  --radius-card: 24px
+  --container: 1120px
+  --gutter: clamp(1.25rem, 4vw, 3rem)
+  --header-h: 76px
+  // motion
+  --ease-out: cubic-bezier(.22, .8, .3, 1)
+  --dur: .55s
 
-// Main Page
+[data-theme="dark"]
+  --cream: #141119
+  --sheet: #1E1B26
+  --surface-2: #282433
+  --line: rgba(239, 234, 245, .14)
+  --ink: #EFEAF5
+  --ink-muted: #A9A3B8
+  --accent: #8B7FF0
+  --accent-soft: rgba(139, 127, 240, .14)
+  --accent-ink: #17142A
+  --amber: #C9964F
+  --coral: #D07A63
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, .25)
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, .35)
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, .5)
+
+// ---------------------------------------------------------------------------
+// 2. Base / reset
+// ---------------------------------------------------------------------------
+*, *::before, *::after
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+html
+  scroll-behavior: smooth
+  scrollbar-color: var(--line) transparent
+
 body
-    background: linear-gradient(80deg, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0)), url("/images/bgImage.jpg")
-    background-repeat: no-repeat
-    background-size: cover
-    margin: 0
-    height: 100vh
-    overflow: auto
-    color: white
+  background: var(--cream)
+  padding: var(--frame-pad)
+  font-family: var(--font-body)
+  color: var(--ink)
+  line-height: 1.65
+  -webkit-font-smoothing: antialiased
+  transition: background-color .35s ease
 
-.js-loader *, .js-loader *:before, .js-loader *:after
-    animation-play-state: paused !important
+.sheet
+  background: var(--sheet)
+  border-radius: var(--radius-sheet)
+  min-height: calc(100vh - var(--frame-pad) * 2)
+  overflow: clip
+  transition: background-color .35s ease
 
-// Adding custom Scrollbar
-::-webkit-scrollbar 
-    width: 10px    
-    padding-right: 2px
-    background: #9b9696
+h1, h2, h3, h4
+  font-family: var(--font-display)
+  line-height: 1.12
+  text-wrap: balance
 
-// Handle 
-::-webkit-scrollbar-thumb 
-    border-radius: 6px
-    background: #42424288
+h2
+  font-size: clamp(2rem, 4.5vw, 3rem)
+  font-weight: 800
+  margin: .5rem 0 2.2rem
 
-// Handle on hover 
-::-webkit-scrollbar-thumb:hover 
-    background: #424242e1
+h3
+  font-size: 1.3rem
+  font-weight: 700
 
-.name-header 
-    padding-top: 35vh
+a
+  color: var(--accent)
+  text-decoration: none
+
+img
+  max-width: 100%
+  display: block
+
+::selection
+  background: var(--accent)
+  color: var(--accent-ink)
+
+:focus-visible
+  outline: 2px solid var(--accent)
+  outline-offset: 3px
+  border-radius: 4px
+
+::-webkit-scrollbar
+  width: 10px
+
+::-webkit-scrollbar-track
+  background: transparent
+
+::-webkit-scrollbar-thumb
+  background: var(--line)
+  border-radius: 999px
+
+  &:hover
+    background: var(--ink-muted)
+
+.skip-link
+  position: absolute
+  top: -100px
+  left: 1.5rem
+  z-index: 300
+  background: var(--accent)
+  color: var(--accent-ink)
+  padding: .6rem 1.2rem
+  border-radius: 999px
+  font-weight: 600
+
+  &:focus
+    top: 1.5rem
+
+.no-wrap
+  white-space: nowrap
+
+// ---------------------------------------------------------------------------
+// 3. Layout primitives
+// ---------------------------------------------------------------------------
+.section
+  max-width: var(--container)
+  margin: 0 auto
+  padding: clamp(3.5rem, 9vh, 6.5rem) var(--gutter)
+  scroll-margin-top: calc(var(--header-h) + 12px)
+
+.eyebrow
+  font-size: .85rem
+  font-weight: 600
+  letter-spacing: .14em
+  text-transform: uppercase
+  color: var(--accent)
+
+  &::before
+    content: ""
+    display: inline-block
+    width: 26px
+    height: 2px
+    background: var(--accent)
+    margin-right: .7rem
+    vertical-align: middle
+
+// ---------------------------------------------------------------------------
+// 4. Header / nav
+// ---------------------------------------------------------------------------
+.site-header
+  position: sticky
+  top: 0
+  z-index: 100
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+  height: var(--header-h)
+  // span the full sheet width but keep content aligned with the container
+  padding: 0 max(var(--gutter), calc(50% - var(--container) / 2 + var(--gutter)))
+  background: transparent
+  border-bottom: 1px solid transparent
+  transition: height .3s var(--ease-out), background-color .3s ease, border-color .3s ease
+
+  &.is-scrolled
+    height: 60px
+    background: color-mix(in srgb, var(--sheet) 94%, var(--ink))
+    border-bottom-color: var(--line)
+
+.brand
+  font-family: var(--font-display)
+  font-weight: 800
+  font-size: 1.3rem
+  color: var(--ink)
+
+.brand-dot
+  color: var(--accent)
+
+.site-nav
+  display: flex
+  align-items: center
+  gap: 1.6rem
+
+.nav-link
+  position: relative
+  color: var(--ink)
+  font-weight: 500
+  font-size: .95rem
+  padding: .3rem 0
+
+  &::after
+    content: ""
+    position: absolute
+    left: 0
+    bottom: -2px
+    width: 100%
+    height: 2px
+    background: var(--accent)
+    transform: scaleX(0)
+    transform-origin: left
+    transition: transform .25s var(--ease-out)
+
+  &:hover::after, &.is-active::after
+    transform: scaleX(1)
+
+.nav-social
+  display: inline-flex
+  align-items: center
+  gap: .9rem
+  padding-left: 1.2rem
+  border-left: 1px solid var(--line)
+
+  a
+    color: var(--ink-muted)
+    font-size: 1.05rem
+    transition: color .2s ease, transform .2s var(--ease-out)
+
+    &:hover
+      color: var(--accent)
+      transform: translateY(-2px)
+
+// Android quick-settings-style theme toggle
+.qs-tile
+  display: inline-flex
+  align-items: center
+  gap: .5rem
+  border: 1px solid var(--line)
+  background: var(--surface-2)
+  color: var(--ink)
+  font-family: var(--font-body)
+  font-size: .82rem
+  font-weight: 600
+  padding: .45rem .9rem
+  border-radius: 999px
+  cursor: pointer
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease
+
+  &[aria-pressed="true"]
+    background: var(--accent)
+    color: var(--accent-ink)
+    border-color: var(--accent)
+
+.nav-toggle
+  display: none
+  flex-direction: column
+  justify-content: center
+  gap: 6px
+  width: 44px
+  height: 44px
+  padding: 10px
+  background: none
+  border: none
+  cursor: pointer
+
+.nav-toggle-bar
+  display: block
+  height: 2px
+  width: 100%
+  background: var(--ink)
+  border-radius: 2px
+  transition: transform .3s var(--ease-out)
+
+.nav-toggle[aria-expanded="true"]
+  .nav-toggle-bar:first-child
+    transform: translateY(4px) rotate(45deg)
+
+  .nav-toggle-bar:last-child
+    transform: translateY(-4px) rotate(-45deg)
+
+// ---------------------------------------------------------------------------
+// 5. Hero
+// ---------------------------------------------------------------------------
+.hero
+  position: relative
+  display: grid
+  grid-template-columns: 1.05fr .95fr
+  align-items: center
+  gap: clamp(2rem, 5vw, 4rem)
+  max-width: var(--container)
+  margin: 0 auto
+  padding: clamp(2rem, 6vh, 4rem) var(--gutter) clamp(4.5rem, 10vh, 6rem)
+  min-height: calc(92vh - var(--header-h))
+
+.hero-copy > *
+  opacity: 0
+  animation: fade-up .7s var(--ease-out) forwards
+
+.hero-copy
+  .eyebrow
+    animation-delay: .05s
+
+  .hero-name
+    animation-delay: .15s
+
+  .designation
+    animation-delay: .3s
+
+  .hero-actions
+    animation-delay: .45s
+
+.hero-name
+  font-size: clamp(2.8rem, 7.5vw, 5.2rem)
+  font-weight: 800
+  margin: .8rem 0 1rem
 
 .designation
-    margin-top: 2vh
-    font-family: 'Roboto', sans-serif
-    font-size: 1.5rem
+  font-size: clamp(1.05rem, 2vw, 1.3rem)
+  color: var(--ink-muted)
+  margin-bottom: 2.2rem
 
-.social
-    padding-top: 8vh
-    padding-left: 2vw
-    font-size: 2rem
+.hero-actions
+  display: flex
+  flex-wrap: wrap
+  gap: .9rem
+
+// Decorative indigo panel with a pure-CSS Android phone
+.hero-panel
+  position: relative
+  background: var(--accent)
+  border-radius: calc(var(--radius-card) + 12px)
+  aspect-ratio: 4 / 4.6
+  max-height: 560px
+  display: grid
+  place-items: center
+  overflow: hidden
+  opacity: 0
+  animation: panel-in .8s var(--ease-out) .25s forwards
+
+  &::before
+    content: ""
+    position: absolute
+    top: -12%
+    right: -12%
+    width: 45%
+    aspect-ratio: 1
+    border-radius: 50%
+    background: var(--amber)
+    opacity: .85
+
+  &::after
+    content: ""
+    position: absolute
+    bottom: -14%
+    left: -10%
+    width: 42%
+    aspect-ratio: 1
+    border-radius: 50%
+    background: var(--coral)
+    opacity: .8
+
+.hero-phone
+  position: relative
+  z-index: 1
+  width: min(230px, 55%)
+  aspect-ratio: 9 / 19
+  border: 9px solid #171420
+  border-radius: 34px
+  background: #171420
+  box-shadow: var(--shadow-lg)
+  animation: phone-float 7s ease-in-out infinite
+
+.hero-phone-screen
+  position: relative
+  width: 100%
+  height: 100%
+  border-radius: 25px
+  background: var(--sheet)
+  overflow: hidden
+  display: flex
+  flex-direction: column
+  padding: 26px 14px 20px
+
+  // punch-hole camera
+  &::before
+    content: ""
+    position: absolute
+    top: 8px
+    left: 50%
+    transform: translateX(-50%)
+    width: 9px
+    height: 9px
+    border-radius: 50%
+    background: #171420
+
+.hp-statusbar
+  position: absolute
+  top: 9px
+  right: 12px
+  display: flex
+  gap: 5px
+
+  span
+    width: 6px
+    height: 6px
+    border-radius: 50%
+    background: var(--ink-muted)
+    opacity: .6
+
+.hp-tiles
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 9px
+  margin-top: 14px
+
+.hp-tile
+  aspect-ratio: 1.55
+  border-radius: 16px
+  display: grid
+  place-items: center
+  font-size: 1.15rem
+
+  &.hp-tile--a
+    background: var(--accent-soft)
+    color: var(--accent)
+
+  &.hp-tile--b
+    background: color-mix(in srgb, var(--amber) 22%, transparent)
+    color: var(--amber)
+
+  &.hp-tile--c
+    background: color-mix(in srgb, var(--coral) 22%, transparent)
+    color: var(--coral)
+
+  &.hp-tile--d
+    background: var(--surface-2)
+    color: var(--ink-muted)
+
+.hp-search
+  margin-top: auto
+  height: 34px
+  border-radius: 999px
+  background: var(--surface-2)
+
+.hp-gesture
+  margin: 12px auto 0
+  width: 40%
+  height: 4px
+  border-radius: 999px
+  background: var(--ink-muted)
+  opacity: .5
+
+.scroll-hint
+  position: absolute
+  left: 50%
+  bottom: 1.6rem
+  transform: translateX(-50%)
+  width: 44px
+  height: 44px
+  border: 1px solid var(--line)
+  border-radius: 50%
+  display: grid
+  place-items: center
+  color: var(--ink-muted)
+  background: var(--sheet)
+  animation: hint-bounce 2.2s ease-in-out infinite
+
+  &:hover
+    color: var(--accent)
+    border-color: var(--accent)
+
+// ---------------------------------------------------------------------------
+// 6. Buttons & chips
+// ---------------------------------------------------------------------------
+.btn
+  display: inline-flex
+  align-items: center
+  gap: .5rem
+  font-family: var(--font-body)
+  font-weight: 600
+  font-size: .95rem
+  padding: .7rem 1.5rem
+  border-radius: 999px
+  border: 1.5px solid transparent
+  cursor: pointer
+  transition: transform .2s var(--ease-out), box-shadow .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease
+
+  &:hover
+    transform: translateY(-2px)
+    box-shadow: var(--shadow-md)
+
+  &:active
+    transform: translateY(0)
+
+.btn--primary
+  background: var(--accent)
+  color: var(--accent-ink)
+
+.btn--ghost
+  background: transparent
+  border-color: var(--line)
+  color: var(--ink)
+
+  &:hover
+    border-color: var(--accent)
+    color: var(--accent)
+
+.btn--sm
+  padding: .45rem 1rem
+  font-size: .85rem
+
+.chips
+  list-style: none
+  display: flex
+  flex-wrap: wrap
+  gap: .5rem
+
+.chip
+  background: var(--surface-2)
+  color: var(--ink-muted)
+  font-size: .8rem
+  font-weight: 500
+  padding: .3rem .85rem
+  border-radius: 999px
+
+// ---------------------------------------------------------------------------
+// 7. Device frames (projects)
+// ---------------------------------------------------------------------------
+.device
+  position: relative
+
+.device-screen
+  overflow: hidden
+
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+// Android phone frame
+.device--phone
+  border: 8px solid #171420
+  border-radius: 32px
+  background: #171420
+  box-shadow: var(--shadow-md)
+
+  .device-screen
+    aspect-ratio: 9 / 19
+    border-radius: 24px
+
+    img
+      object-position: top center
+
+  // punch-hole camera
+  &::before
+    content: ""
+    position: absolute
+    top: 8px
+    left: 50%
+    transform: translateX(-50%)
+    width: 9px
+    height: 9px
+    border-radius: 50%
+    background: #171420
+    box-shadow: 0 0 0 2px rgba(23, 20, 32, .35)
+    z-index: 2
+
+  // gesture bar
+  &::after
+    content: ""
+    position: absolute
+    bottom: 8px
+    left: 50%
+    transform: translateX(-50%)
+    width: 36%
+    height: 4px
+    border-radius: 999px
+    background: rgba(255, 255, 255, .8)
+    z-index: 2
+
+// Browser window frame
+.device--browser
+  border: 1px solid var(--line)
+  border-radius: 14px
+  background: var(--surface-2)
+  box-shadow: var(--shadow-sm)
+  overflow: hidden
+
+  // window chrome bar with three dots
+  &::before
+    content: ""
+    display: block
+    height: 30px
+    border-bottom: 1px solid var(--line)
+    background-image: radial-gradient(circle 4px at 18px 15px, var(--coral) 4px, transparent 5px), radial-gradient(circle 4px at 34px 15px, var(--amber) 4px, transparent 5px), radial-gradient(circle 4px at 50px 15px, var(--accent) 4px, transparent 5px)
+
+  .device-screen
+    aspect-ratio: 16 / 10
+
+// ---------------------------------------------------------------------------
+// 8. Projects
+// ---------------------------------------------------------------------------
+.projects
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr))
+  gap: 1.5rem
+
+.project
+  border: 1px solid var(--line)
+  border-radius: var(--radius-card)
+  padding: 1.5rem
+  display: flex
+  flex-direction: column
+  gap: 1.1rem
+  transition: transform .3s var(--ease-out), box-shadow .3s ease
+
+  .device--phone
+    width: min(200px, 70%)
+    margin: .5rem auto 0
+
+  .project-info
+    display: flex
+    flex-direction: column
+    gap: .8rem
+    flex: 1
+
+  .project-links
+    margin-top: auto
+    display: flex
+    flex-wrap: wrap
+    gap: .6rem
+    padding-top: .4rem
+
+  p
+    color: var(--ink-muted)
+    font-size: .95rem
+
+.project-points
+  padding-left: 1.15rem
+  color: var(--ink-muted)
+  font-size: .92rem
+  display: grid
+  gap: .45rem
+
+// Featured project — full-width accent panel
+.project--featured
+  grid-column: 1 / -1
+  display: grid
+  grid-template-columns: minmax(220px, 300px) 1fr
+  align-items: center
+  gap: clamp(1.5rem, 4vw, 3.5rem)
+  background: var(--accent)
+  border: none
+  color: var(--accent-ink)
+  padding: clamp(1.5rem, 4vw, 3rem)
+
+  .device--phone
+    width: 100%
+    margin: 0
+    transform: rotate(-3deg)
+
+  h3
+    font-size: clamp(1.5rem, 3vw, 2rem)
+
+  p, .project-points
+    color: color-mix(in srgb, var(--accent-ink) 82%, transparent)
+
+  .chip
+    background: color-mix(in srgb, var(--accent-ink) 14%, transparent)
+    color: var(--accent-ink)
+
+  .btn--ghost
+    border-color: color-mix(in srgb, var(--accent-ink) 40%, transparent)
+    color: var(--accent-ink)
+
+    &:hover
+      background: var(--accent-ink)
+      color: var(--accent)
+      border-color: var(--accent-ink)
+
+@media (hover: hover) and (pointer: fine)
+  .project:not(.project--featured):hover
+    transform: translateY(-5px)
+    box-shadow: var(--shadow-md)
+
+  .project--featured .device--phone
+    transition: transform .4s var(--ease-out)
+
+    &:hover
+      transform: rotate(0deg) translateY(-6px)
+
+// ---------------------------------------------------------------------------
+// 9. Resume
+// ---------------------------------------------------------------------------
+.resume-btn
+  margin-bottom: 2.5rem
+
+.resume-grid
+  display: grid
+  grid-template-columns: 1.35fr 1fr
+  gap: clamp(2rem, 5vw, 4rem)
+
+.resume-block + .resume-block
+  margin-top: 2.5rem
+
+.resume-block > h3
+  font-size: 1.05rem
+  text-transform: uppercase
+  letter-spacing: .1em
+  color: var(--ink-muted)
+  margin-bottom: 1.4rem
+
+.timeline
+  list-style: none
+  border-left: 2px solid var(--line)
+  padding-left: 1.6rem
+  display: grid
+  gap: 2.2rem
+
+  > li
+    position: relative
+
+    &::before
+      content: ""
+      position: absolute
+      left: calc(-1.6rem - 7px)
+      top: .45rem
+      width: 12px
+      height: 12px
+      border-radius: 50%
+      background: var(--accent)
+      box-shadow: 0 0 0 4px var(--accent-soft)
+
+.job-title
+  font-size: 1.15rem
+
+.period
+  display: block
+  font-size: .85rem
+  font-weight: 600
+  color: var(--accent)
+  margin: .2rem 0 .8rem
+
+.job-projects
+  list-style: none
+  display: grid
+  gap: 1rem
+
+  > li > strong
+    display: block
+    margin-bottom: .3rem
+
+  ul
+    padding-left: 1.15rem
+    color: var(--ink-muted)
+    font-size: .92rem
+    display: grid
+    gap: .4rem
+
+.edu-list
+  list-style: none
+  color: var(--ink-muted)
+
+  li
+    padding-left: 1.6rem
+    position: relative
+
+    &::before
+      content: ""
+      position: absolute
+      left: 0
+      top: .55rem
+      width: 8px
+      height: 8px
+      border-radius: 50%
+      background: var(--amber)
+
+.skills-group + .skills-group
+  margin-top: 1.8rem
+
+.skills-group > h4
+  font-size: .95rem
+  margin-bottom: .8rem
+
+.chip-group
+  width: 100%
+  background: var(--accent-soft)
+  border-radius: 16px
+  padding: .6rem .85rem
+
+  .chip-group-title
+    display: block
+    font-size: .8rem
+    font-weight: 600
+    color: var(--accent)
+    margin-bottom: .45rem
+
+  .chips
+    gap: .4rem
+
+// ---------------------------------------------------------------------------
+// 10. Contact
+// ---------------------------------------------------------------------------
+.contact-grid
+  display: grid
+  grid-template-columns: 1fr 1.25fr
+  gap: clamp(2rem, 5vw, 4rem)
+  align-items: start
+
+.contact-info
+  display: flex
+  flex-direction: column
+  gap: 1.4rem
+
+  p
+    color: var(--ink-muted)
+    max-width: 34ch
+
+.contact-social
+  display: flex
+  gap: .9rem
+
+  a
+    width: 46px
+    height: 46px
+    border: 1px solid var(--line)
+    border-radius: 50%
+    display: grid
+    place-items: center
+    color: var(--ink)
+    font-size: 1.1rem
+    transition: transform .2s var(--ease-out), color .2s ease, border-color .2s ease
+
+    &:hover
+      transform: translateY(-3px)
+      color: var(--accent)
+      border-color: var(--accent)
+
+#copy-email
+  align-self: flex-start
+
+.form-card
+  // The embedded Google Form cannot be themed — keep a light card in both themes
+  background: #FDFBF7
+  color-scheme: light
+  border: 1px solid var(--line)
+  border-radius: var(--radius-card)
+  padding: .6rem
+  box-shadow: var(--shadow-sm)
+
+  iframe
+    display: block
+    width: 100%
+    height: min(820px, 75vh)
+    border: 0
+    border-radius: calc(var(--radius-card) - 8px)
+
+// ---------------------------------------------------------------------------
+// 11. Footer / FAB / Toast
+// ---------------------------------------------------------------------------
+.site-footer
+  max-width: var(--container)
+  margin: 0 auto
+  padding: 1.6rem var(--gutter) 2.2rem
+  border-top: 1px solid var(--line)
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+  color: var(--ink-muted)
+  font-size: .88rem
+
+.footer-social
+  display: inline-flex
+  gap: 1rem
+
+  a
+    color: var(--ink-muted)
+
+    &:hover
+      color: var(--accent)
+
+.fab
+  position: fixed
+  right: calc(var(--frame-pad) + 18px)
+  bottom: calc(var(--frame-pad) + 18px)
+  z-index: 150
+  width: 56px
+  height: 56px
+  border: none
+  border-radius: 18px // Material 3 FAB shape
+  background: var(--accent)
+  color: var(--accent-ink)
+  font-size: 1.15rem
+  display: grid
+  place-items: center
+  cursor: pointer
+  box-shadow: var(--shadow-lg)
+  opacity: 0
+  transform: translateY(16px) scale(.9)
+  pointer-events: none
+  transition: opacity .3s ease, transform .3s var(--ease-out)
+
+  &.is-visible
+    opacity: 1
+    transform: none
+    pointer-events: auto
+
+    &:hover
+      transform: translateY(-3px)
+
+#toast-region
+  position: fixed
+  left: 50%
+  bottom: calc(var(--frame-pad) + 26px)
+  transform: translateX(-50%)
+  z-index: 200
+  display: grid
+  justify-items: center
+  pointer-events: none
+
+.toast
+  background: var(--ink)
+  color: var(--sheet)
+  font-size: .88rem
+  font-weight: 500
+  padding: .65rem 1.4rem
+  border-radius: 999px
+  box-shadow: var(--shadow-md)
+  animation: toast-in .3s var(--ease-out)
+
+  &.is-leaving
+    animation: toast-out .3s ease forwards
+
+// ---------------------------------------------------------------------------
+// 12. Reveal system & keyframes
+// ---------------------------------------------------------------------------
+.reveal
+  opacity: 0
+  transform: translateY(26px)
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out)
+
+  &.is-visible
+    opacity: 1
+    transform: none
+
+@keyframes fade-up
+  from
     opacity: 0
-    animation: fadeInEffect 1s 
-    animation-delay: 4s
-    animation-fill-mode: forwards
-    a
-        margin-left: 50px
-        color: white
+    transform: translateY(22px)
+  to
+    opacity: 1
+    transform: none
 
-.fadefirst
+@keyframes panel-in
+  from
     opacity: 0
-    animation: fadeInEffect 1s
-    animation-delay: 1s
-    animation-fill-mode: forwards
-.fadesecond
+    transform: translateY(30px) scale(.96)
+  to
+    opacity: 1
+    transform: none
+
+@keyframes phone-float
+  0%, 100%
+    transform: rotate(-5deg) translateY(0)
+  50%
+    transform: rotate(-5deg) translateY(-12px)
+
+@keyframes hint-bounce
+  0%, 100%
+    transform: translateX(-50%) translateY(0)
+  50%
+    transform: translateX(-50%) translateY(7px)
+
+@keyframes toast-in
+  from
     opacity: 0
-    animation: fadeInEffect 1s 
-    animation-delay: 2s
-    animation-fill-mode: forwards
-.fadethird
+    transform: translateY(14px)
+  to
+    opacity: 1
+    transform: none
+
+@keyframes toast-out
+  from
+    opacity: 1
+  to
     opacity: 0
-    animation: fadeInEffect 1s 
-    animation-delay: 3s
-    animation-fill-mode: forwards
+    transform: translateY(8px)
 
-// To prevent the card overlap the heading
-@media only screen and (max-width: 660px)
-    .name-header
-        .display-1
-            font-size: 4rem
-        .display-4
-            font-size: 2rem
-    .social
-        padding-top: 20vh
+// ---------------------------------------------------------------------------
+// 13. Responsive
+// ---------------------------------------------------------------------------
+@media (max-width: 980px)
+  .hero
+    grid-template-columns: 1fr
+    padding-top: 1.5rem
+    min-height: 0
 
-.non-overflow
-    white-space: nowrap
-    padding-right: 80px
+  .hero-panel
+    max-width: 480px
+    width: 100%
+    margin: 0 auto
+    aspect-ratio: 4 / 3.4
 
-.ruler
-    border: 1px solid rgb(180, 180, 180)
-    background-color: rgb(180, 180, 180)
-    position: absolute 
-    top: 9%
-    left: 60%
-    height: 0
-    animation: drawLine-v 1.5s     
-    animation-fill-mode: forwards
+  .hero-phone
+    width: min(190px, 48%)
 
-// Making ruler horizontal for < mid screens
-@media only screen and (max-width: 992px)
-    .name-header
-        padding-top: 25vh
-    .ruler
-        position: relative
-        top: 7vh
-        left: 0%
-        width: 0
-        height: 0        
-        animation: drawLine-h 1.5s
-        animation-fill-mode: forwards
-    .social
-        padding-top: 10vh
-        font-size: 1.5rem
+  .scroll-hint
+    display: none
 
-// Main Page ends
+  .resume-grid, .contact-grid
+    grid-template-columns: 1fr
 
-// Pop-up Card     
+  .project--featured
+    grid-template-columns: 1fr
 
-.icons
-        color: white
-        display: inline
-        font-size: 2rem
-        padding-left: 25px
-        padding-top: 38px
-        display: inline
+    .device--phone
+      width: min(220px, 65%)
+      margin: 0 auto
 
-.center-card 
-    position: fixed
-    right: 0px
-    height: 100px
-    width: 85px
-    border-radius: 5px 0 0 5px
-    transition-duration: 0.5s
-    cursor: pointer
-    display: inline    
-    z-index: 100
+@media (max-width: 800px)
+  .nav-toggle
+    display: flex
 
-    .tag-title
+  .site-nav
+    position: absolute
+    top: calc(var(--header-h) - 8px)
+    left: 0
+    right: 0
+    flex-direction: column
+    align-items: stretch
+    gap: .3rem
+    background: var(--sheet)
+    border: 1px solid var(--line)
+    border-radius: var(--radius-card)
+    padding: 1rem
+    box-shadow: var(--shadow-lg)
+    opacity: 0
+    transform: translateY(-8px)
+    pointer-events: none
+    transition: opacity .25s ease, transform .25s var(--ease-out)
+
+    &.is-open
+      opacity: 1
+      transform: none
+      pointer-events: auto
+
+    .nav-link
+      padding: .7rem .5rem
+      border-radius: 10px
+
+      &::after
         display: none
-        padding-left: 10px
-        padding-top: 20px
-        color: #ffffff
-    
-    .section-title, .card-content, .google-form
-        display: none
-    .google-form
-        overflow-y: hidden
 
-#info-card
-    position: fixed
-    top: $top-padding
-    right: 3px
-    height: 100px
-    width: 85px
-    background-color: inherit
-    box-shadow: 0
-    cursor: pointer
+      &:hover, &.is-active
+        background: var(--accent-soft)
+        color: var(--accent)
 
-a:hover
-    color: white
-    text-decoration: none
+  .nav-social
+    border-left: none
+    border-top: 1px solid var(--line)
+    padding: .9rem .5rem .5rem
+    margin-top: .4rem
 
-// Positioning the card elements with a padding increase
-@for $card from 1 through 4
-    ##{list.nth($cards, $card)}-card
-        top: $top-padding
-        margin-top: 103px * $card
-        background-color: #{list.nth($cardColors, $card)}
-        transform: translateX(100%)
-        animation: pullInCards 0.7s
-        animation-delay: 0.6s * $card
-        animation-fill-mode: forwards
-    ##{list.nth($cards, $card)}-card.active 
-        top: 10vh
-        margin-top: 0
+  .qs-tile
+    justify-content: center
 
-// Reducing pop-up icons size for small displays
-@media only screen and (max-height: 800px), only screen and (max-width: 430px)
-    .center-card
-        height: 70px
-        width: 75px
-        margin-top: -20px
-        .section-title
-            padding-top: 15px
-    
-    .center-card.hovered
-        width: 175px
-    
-    .icons, #info-card
-        font-size: 1.6rem
-        padding: 20px 0px 0px 18px
-    #info-card
-        right: 0px
-        width: 75px
-
-    @for $card from 1 through 4
-        ##{list.nth($cards, $card)}-card
-            margin-top: 77px * $card
-
-.center-card:hover, .hovered
-    width: 200px 
+  body.nav-locked
     overflow: hidden
-    .tag-title
-        display: inline-block
 
+@media (max-width: 560px)
+  :root
+    --header-h: 64px
 
-// Card after opening it
-.center-card.active 
-    @extend .center-card
-    // background-image: linear-gradient(45deg, $resumebg 5%, $resumebg 70%)
-    top: 10vh
-    right: 10vw
-    height: 80vh
-    width: 80vw
-    border-radius: 0
-    color: #000
-    cursor: auto
-    animation-fill-mode: forwards
-    overflow-y: auto
-    overflow-x: hidden
-    z-index: 200
+  .hero-actions .btn
+    flex: 1
+    justify-content: center
 
-    .resume-btn
-        float: right
+  .site-footer
+    flex-direction: column
+    text-align: center
 
-    .tag-title
-        display: none
-    
-    .icons
-        position: fixed
-        top: 10px
-        left: 10px
+  .form-card iframe
+    height: 70vh
 
-    .section-title 
-        text-align: center
-        justify-content: center
-        align-items: center
-        margin-top: 30px
-        color: #000
-        transition-duration: 0.5s
-        display: block
-    
-    .card-content
-        display: block
-        padding-top: 20%
-        height: 100%
-        overflow-y: auto
+// ---------------------------------------------------------------------------
+// 14. Reduced motion — kill everything
+// ---------------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce)
+  html
+    scroll-behavior: auto
 
-    .google-form
-        display: block
+  *, *::before, *::after
+    animation-duration: .01ms !important
+    animation-iteration-count: 1 !important
+    transition-duration: .01ms !important
 
-.card-text
-    margin-bottom: 1rem
-    .btn-sm
-        background: #90ccf4
-        cursor: default
-        margin-top: 4px
-
-// Resume card
-#resume-card
-    .card-content
-        max-width: 550px
-        margin: auto
-        padding-top: 7%
-        font-size: 1.3rem
-
-// Project card
-#project-card
-    .card-group
-        padding-top: 7%
-    .card-content
-        padding-top: 0
-
-// About card
-#about-card
-    .card-content
-        font-size: 1.4rem
-// Pop-up card end
-
-// KeyFrame animation definitions
-
-// Fade-in effect for the letters
-@keyframes fadeInEffect
-    0%
-        opacity: 0
-    100%
-        opacity: 1
-
-// Draw line in vertical and horizontal direction
-@keyframes drawLine-h 
-    100%
-        width: 70vw
-@keyframes drawLine-v
-    100%
-        height: 70vh
-
-// To give a pull in effect for pop-up cards on page load
-@keyframes pullInCards
-    0%
-        transform: translateX(100%)
-    80%
-        transform: translateX(-20%)
-    100%    
-        transform: translateX(0%)
-
-// Keyframes end
+  .hero-copy > *, .hero-panel
+    opacity: 1 !important
+    animation: none !important
