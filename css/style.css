@@ -5,8 +5,8 @@
   --line: rgba(20, 20, 43, .13);
   --ink: #14142B;
   --ink-muted: #5A5A72;
-  --accent: #4B3FBF;
-  --accent-soft: rgba(75, 63, 191, .09);
+  --accent: #6E3FBF;
+  --accent-soft: rgba(110, 63, 191, .09);
   --accent-ink: #FFFFFF;
   --amber: #E0A458;
   --coral: #E8846B;
@@ -32,8 +32,8 @@
   --line: rgba(239, 234, 245, .14);
   --ink: #EFEAF5;
   --ink-muted: #A9A3B8;
-  --accent: #8B7FF0;
-  --accent-soft: rgba(139, 127, 240, .14);
+  --accent: #A78BFA;
+  --accent-soft: rgba(167, 139, 250, .14);
   --accent-ink: #17142A;
   --amber: #C9964F;
   --coral: #D07A63;
@@ -184,8 +184,9 @@ img {
 }
 .site-header.is-scrolled {
   height: 60px;
-  background: color-mix(in srgb, var(--sheet) 94%, var(--ink));
+  background: var(--sheet);
   border-bottom-color: var(--line);
+  box-shadow: var(--shadow-sm);
 }
 
 .brand {

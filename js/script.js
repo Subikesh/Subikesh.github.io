@@ -1,10 +1,10 @@
 // Portfolio — renders content from data.json into [data-render] containers and
 // wires the page interactions (theme, nav, reveals, FAB, toasts).
 //
-// Section ids (hero/about/work/resume/contact) are the sync contract with
+// Section ids (hero/about/work/projects/contact) are the sync contract with
 // index.html nav links and css/style.sass — keep them aligned when renaming.
 
-const SECTION_IDS = ["about", "work", "resume", "contact"];
+const SECTION_IDS = ["about", "work", "projects", "contact"];
 
 document.addEventListener("DOMContentLoaded", () => {
     // Wire interactions immediately — they don't depend on data and should work
