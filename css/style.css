@@ -683,6 +683,9 @@ img {
   margin: 0;
   transform: rotate(-3deg);
 }
+.project--featured .device--phone .device-screen img {
+  object-position: top left;
+}
 .project--featured h3 {
   font-size: clamp(1.5rem, 3vw, 2rem);
 }
