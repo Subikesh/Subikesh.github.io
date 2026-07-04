@@ -923,7 +923,7 @@ img {
   color: var(--accent);
 }
 
-.fab {
+#fab {
   position: fixed;
   right: max(var(--frame-pad) + 18px, (100vw - var(--sheet-max)) / 2 + 18px);
   bottom: calc(var(--frame-pad) + 18px);
@@ -944,12 +944,12 @@ img {
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s var(--ease-out);
 }
-.fab.is-visible {
+#fab.is-visible {
   opacity: 1;
   transform: none;
   pointer-events: auto;
 }
-.fab.is-visible:hover {
+#fab.is-visible:hover {
   transform: translateY(-3px);
 }
 

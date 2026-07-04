@@ -911,7 +911,8 @@ img
     &:hover
       color: var(--accent)
 
-.fab
+// id selector on purpose: class "fab" would collide with Font Awesome's brands class
+#fab
   position: fixed
   // stay pinned near the sheet card's edge, not the window edge, on wide screens
   right: max(calc(var(--frame-pad) + 18px), calc((100vw - var(--sheet-max)) / 2 + 18px))
