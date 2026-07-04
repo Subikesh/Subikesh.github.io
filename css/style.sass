@@ -37,6 +37,8 @@
   --font-body: "Instrument Sans", system-ui, -apple-system, sans-serif
   // layout
   --frame-pad: clamp(14px, 2.5vw, 36px)
+  // sheet is capped so it reads as a card on wide windows, not a window border
+  --sheet-max: 1400px
   --radius-sheet: clamp(16px, 2.5vw, 28px)
   --radius-card: 24px
   --container: 1120px
@@ -87,6 +89,9 @@ body
   background: var(--sheet)
   border-radius: var(--radius-sheet)
   min-height: calc(100vh - var(--frame-pad) * 2)
+  max-width: var(--sheet-max)
+  margin: 0 auto
+  box-shadow: var(--shadow-md)
   overflow: clip
   transition: background-color .35s ease
 
@@ -908,7 +913,8 @@ img
 
 .fab
   position: fixed
-  right: calc(var(--frame-pad) + 18px)
+  // stay pinned near the sheet card's edge, not the window edge, on wide screens
+  right: max(calc(var(--frame-pad) + 18px), calc((100vw - var(--sheet-max)) / 2 + 18px))
   bottom: calc(var(--frame-pad) + 18px)
   z-index: 150
   width: 56px

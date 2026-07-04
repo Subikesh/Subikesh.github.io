@@ -25,6 +25,8 @@ There is no build pipeline, no tests, and no lint. Do not invent one.
 
 - **Deploy** — push to `master`; GitHub Pages publishes automatically.
 
+- **Cache busting** — `index.html` references `css/style.css?v=N` and `js/script.js?v=N`. Bump the `?v=` number whenever those files change, or browsers (and the GitHub Pages CDN) may serve stale copies.
+
 ## Architecture
 
 - `index.html` is the portfolio entry point and a slim skeleton: a single scrolling page framed as a rounded "sheet" inset on a colored background. Sections in order: `#hero`, `#about`, `#work` (experience/skills/resume), `#projects`, `#contact`, plus a sticky header nav, a Material-style FAB, and an Android-style toast region. Each content region is an empty container marked with a `data-render="…"` attribute that `script.js` populates.

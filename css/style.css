@@ -16,6 +16,7 @@
   --font-display: "Bricolage Grotesque", "Segoe UI", sans-serif;
   --font-body: "Instrument Sans", system-ui, -apple-system, sans-serif;
   --frame-pad: clamp(14px, 2.5vw, 36px);
+  --sheet-max: 1400px;
   --radius-sheet: clamp(16px, 2.5vw, 28px);
   --radius-card: 24px;
   --container: 1120px;
@@ -67,6 +68,9 @@ body {
   background: var(--sheet);
   border-radius: var(--radius-sheet);
   min-height: calc(100vh - var(--frame-pad) * 2);
+  max-width: var(--sheet-max);
+  margin: 0 auto;
+  box-shadow: var(--shadow-md);
   overflow: clip;
   transition: background-color 0.35s ease;
 }
@@ -921,7 +925,7 @@ img {
 
 .fab {
   position: fixed;
-  right: calc(var(--frame-pad) + 18px);
+  right: max(var(--frame-pad) + 18px, (100vw - var(--sheet-max)) / 2 + 18px);
   bottom: calc(var(--frame-pad) + 18px);
   z-index: 150;
   width: 56px;
