@@ -1,0 +1,14 @@
+<!doctype html>
+<!-- Dev-only harness: renders the site in a phone-sized iframe for testing. -->
+<html>
+<head><meta charset="utf-8"><title>phone harness</title>
+<style>
+  body { margin: 0; height: 100vh; background: #202124; }
+  iframe { width: 412px; height: 100vh; border: none; display: block; }
+</style></head>
+<body>
+  <button id="pop" style="position:fixed;right:20px;top:20px;padding:12px 20px;font-size:16px"
+    onclick="window.open('/', 'phone', 'width=430,height=980,left=40,top=10')">Open phone popup</button>
+  <iframe src="/" allow="clipboard-write"></iframe>
+</body>
+</html>

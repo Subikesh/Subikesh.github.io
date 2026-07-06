@@ -1,0 +1,219 @@
+﻿{
+  "meta": {
+    "pageTitle": "Subikesh | Portfolio",
+    "name": "Subikesh P S",
+    "designation": "Software Engineer 2 - Android",
+    "resumePdf": "Resume.pdf",
+    "contactFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLScJizHy7OZI_rQ9L6iTb1lt2SIzrDNopmaaEb9HhzcB4F67uA/viewform?embedded=true",
+    "description": "Personal portfolio of Subikesh P S â€” Software Engineer 2 (Android) at Intuit, working on Kotlin Multiplatform, Jetpack Compose, and AI-powered experiences.",
+    "social": [
+      { "label": "Github",   "url": "https://github.com/Subikesh",              "icon": "fa fa-github" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/subikeshps/",  "icon": "fa fa-linkedin" },
+      { "label": "Mail",     "url": "mailto:subikeshps@gmail.com",              "icon": "fa fa-envelope" }
+    ]
+  },
+  "about": {
+    "content": [
+      "I am currently working as a Software Engineer 2 - Android at Intuit, building mobile experiences for TurboTax and QuickBooks customers. I completed my Bachelor's in SRM Easwari Engineering College majoring in Computer Science and Engineering. I love crafting performant, well-architected Android apps using Kotlin Multiplatform, Jetpack Compose, and Clean Architecture, and I enjoy exploring the intersection of mobile and AI.",
+      "I am always curious about the things I see and use, and I enjoy learning them. Lately, that curiosity has pulled me deeper into AI engineering â€” building RAG pipelines, working with vector databases, and shipping AI-powered features end to end. I like to work on projects out of my comfort zone so I can learn while building, and I am always looking forward to opportunities to grow my skills."
+    ]
+  },
+  "projects": [
+    {
+      "title": "NewsBuddy - AI News Companion",
+      "image": "/images/newsbuddy.webp",
+      "alt": "NewsBuddy",
+      "description": "A cross-platform AI news companion app that delivers daily briefings across 8 categories with follow-up conversational Q&A and source attribution.",
+      "points": [
+        "Built and shipped using Kotlin Multiplatform and Jetpack Compose, with AI-generated daily briefings and conversational Q&A backed by source attribution.",
+        "Implemented Clean Architecture with MVVM, Kotlin Coroutines and Flows for reactive state management, and Ktor for networking â€” with all chat data persisted on-device for user privacy.",
+        "Engineered a Django REST backend with a RAG pipeline using Gemini embeddings and a Qdrant vector database, enabling semantic search across daily articles to power context-aware AI responses."
+      ],
+      "tags": ["Kotlin Multiplatform", "Jetpack Compose", "RAG", "Qdrant", "Django REST"],
+      "buttons": [
+        { "url": "https://play.google.com/store/apps/details?id=com.spacey.newsbuddy.android", "text": "Play Store" },
+        { "url": "https://newsbuddyapp.in/",                                                   "text": "Website" }
+      ]
+    },
+    {
+      "title": "Ecommerce Application",
+      "image": "/images/ecommerce_app.webp",
+      "alt": "Ecommerce Application",
+      "description": "An application that gets products data from Flipkart affiliate API and implements the ecommerce workflow with cart, wishlisting, and buying products.",
+      "points": [
+        "Implemented while studying android",
+        "Used retrofit and room db for network and database calls",
+        "Learned dependency injection using dagger along with many architectural patterns"
+      ],
+      "tags": ["Android", "Kotlin", "Clean Architecture"],
+      "buttons": [
+        { "url": "https://github.com/Subikesh/ECommerceApplication", "text": "Source code" }
+      ]
+    },
+    {
+      "title": "Code Database",
+      "image": "/images/code_database.webp",
+      "alt": "Code Database",
+      "description": "An application to store coding questions and track your progress on the road to become an expert programmer.",
+      "points": [
+        "Implemented the MVT design pattern in Django, Python and designed the database with MySQL database.",
+        "A REST API is created using django-rest-framework to do CRUD operations on the website.",
+        "Created an Android app which consumes the hosted REST API for list, search and user login functionalities.",
+        "Hosted it in python-anywhere with MySQL database as an open-source app"
+      ],
+      "tags": ["Django", "Django-rest-framework", "CRUD", "PostgreSQL"],
+      "buttons": [
+        { "url": "https://github.com/Subikesh/Code-Database",         "text": "Source code" },
+        { "url": "https://github.com/Subikesh/CodeDatabase_android",  "text": "Android Source code" },
+        { "url": "https://codedatabase.pythonanywhere.com/",          "text": "View Project" }
+      ]
+    },
+    {
+      "title": "Digit Recognizer",
+      "image": "/images/digits.webp",
+      "alt": "Digit recognizer",
+      "description": "An app to predict hand-written digits drawn by user using deep learning. The project is done from scratch using numpy and pandas libraries in python.",
+      "tags": ["Django", "Neural Nets", "MNIST Classification"],
+      "buttons": [
+        { "url": "https://github.com/Subikesh/Digit-Recognition", "text": "Source code" },
+        { "url": "https://subikeshdigits.herokuapp.com/",         "text": "View Project" }
+      ]
+    },
+    {
+      "title": "Dental Data Statistics",
+      "image": "/images/dentalstats.webp",
+      "alt": "Dental Statistics",
+      "description": "An application to give a neat GUI for inserting, updating and displaying the data graphically and generating a report from the data given from a dental hospital. The app is currently being used by SRM dental hospital for tracking patient records.",
+      "tags": ["Tkinter", "SQLite", "Report Generation", "Data visualization"],
+      "buttons": [
+        { "url": "https://github.com/Subikesh/DentalDataStatictics", "text": "Source code" }
+      ]
+    },
+    {
+      "title": "Tic-Tac-Toe AI",
+      "image": "/images/tictactoe.webp",
+      "alt": "TicTacToe",
+      "description": "The game tic-tac-toe for two player and single player - with AI created using minimax algorithm made using python.",
+      "buttons": [
+        { "url": "https://github.com/Subikesh/Tic-Tac-Toe", "text": "Source code" }
+      ]
+    },
+    {
+      "title": "Minesweeper",
+      "image": "/images/minesweeper.webp",
+      "alt": "minesweeper",
+      "description": "A strategic single-player game to flag the mines in the board with the clues about neighboring mines. It is created using python in an object-oriented design.",
+      "buttons": [
+        { "url": "https://github.com/Subikesh/Minesweeper", "text": "Source code" }
+      ]
+    }
+  ],
+  "resume": [
+    {
+      "heading": "Experience",
+      "list": [
+        {
+          "heading": "Software Engineer 2 - Android, Intuit Inc",
+          "period": "March 2025 - Present",
+          "ol": [
+            {
+              "title": "Virtual Expert Platform",
+              "ul": [
+                "Improved user experience for TurboTax and QuickBooks customers by resolving critical bugs in VEP mobile SDKs (chat, video, screenshare), ensuring reliable and streamlined connections to tax experts.",
+                "Collaborated with the team under a tight deadline to integrate a new video/screenshare SDK alongside the older vendor, building an abstraction layer to facilitate its future deprecation.",
+                "Supported Jetpack Compose migration across multiple assets owned by VEP, driving modernization of the UI layer with proper state management and recomposition patterns."
+              ]
+            },
+            {
+              "title": "One Intuit Contact Us SDK",
+              "ul": [
+                "Owned the Intuit-wide â€œContact Usâ€ mobile SDK, providing end-to-end support and maintenance for internal partner teams and ensuring code quality with peer reviews.",
+                "Refactored the SDK to an MVI architecture to facilitate future Compose migration and implemented deeplinking, achieving a 7% increase in clickthrough rate.",
+                "Migrated chat experience by integrating a GenAI widget that bridges AI with HI for tax filing assistance."
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Member Technical Staff - Android, Zoho Corporation",
+          "period": "May 2022 - March 2025",
+          "ol": [
+            {
+              "title": "Kotlin Multiplatform SDK",
+              "ul": [
+                "Developed a Kotlin Multiplatform library for Zoho CRM's shared domain and data layers with network services using Ktor and Koin DI, ensuring seamless functionality across Android, iOS, and macOS platforms.",
+                "Conducted in-depth KMP performance and interop analysis on Android and iOS, identifying critical performance bottlenecks and interop issues in the early alpha stage, informing the team's adoption strategy.",
+                "Enforced separation of concerns, unidirectional data flow, and Clean Architecture principles to improve code maintainability, resulting in a 30% reduction in development time."
+              ]
+            },
+            {
+              "title": "Database Migration Tool",
+              "ul": [
+                "Built a database migration tool using Gradle, Kotlin, and XML schema parsing to automate SQL DDL query generation at compile time for Android, iOS, and macOS platforms.",
+                "Integrated migration in CI/CD to boost developer productivity, cutting database maintenance and testing workloads by 25%."
+              ]
+            },
+            {
+              "title": "Use Case Testing Framework",
+              "ul": [
+                "Created a robust framework for Use Case Testing in the domain and data layer, improving testing efficiency and reducing reliance on manual testing by 60%, using JUnit parameterized tests for data-driven testing, MockK for dependency mocking, and Espresso for UI automation."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Education",
+      "ul": [
+        "B.E CSE at SRM Easwari Engineering College, Chennai | 8.86 CGPA with distinction (2018 - 2022)"
+      ]
+    },
+    {
+      "heading": "Skills",
+      "list": [
+        {
+          "heading": "Android Development",
+          "ul": [
+            "Jetpack Compose",
+            "Kotlin Multiplatform (KMP)",
+            "Kotlin Coroutines and Flows",
+            "Android Jetpack components",
+            "Material Design",
+            "Room Database",
+            "DataStore",
+            "Retrofit",
+            "Ktor"
+          ]
+        },
+        {
+          "heading": "Architectural Patterns",
+          "ul": [
+            "Clean Architecture",
+            "MVVM",
+            "MVI",
+            { "title": "Dependency Injection", "ul": ["Dagger", "Hilt", "Koin"] }
+          ]
+        },
+        {
+          "heading": "AI & Backend",
+          "ul": [
+            "Retrieval-Augmented Generation (RAG)",
+            "Vector Databases (Qdrant)",
+            "Semantic Search",
+            "LLM Embeddings",
+            "Django and Django REST framework"
+          ]
+        },
+        {
+          "heading": "Testing",
+          "ul": [
+            "UI automation using Espresso and Compose Test Tags",
+            "JUnit parameterized tests",
+            "MockK"
+          ]
+        }
+      ]
+    }
+  ]
+}

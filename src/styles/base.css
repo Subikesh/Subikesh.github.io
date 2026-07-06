@@ -1,0 +1,84 @@
+/* ============ Reset ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { height: 100%; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'Roboto Flex Variable', Roboto, system-ui, sans-serif;
+  background: #000;
+  color: var(--md-on-surface);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+a { color: inherit; }
+
+/* ============ Motion tokens ============ */
+:root {
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized-decel: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --ease-emphasized-accel: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --dur-short: 200ms;
+  --dur-medium: 350ms;
+  --dur-long: 500ms;
+
+  /* Elevation (M3 shadow pairs) */
+  --elev-1: 0 1px 2px rgba(0,0,0,.3), 0 1px 3px 1px rgba(0,0,0,.15);
+  --elev-2: 0 1px 2px rgba(0,0,0,.3), 0 2px 6px 2px rgba(0,0,0,.15);
+  --elev-3: 0 1px 3px rgba(0,0,0,.3), 0 4px 8px 3px rgba(0,0,0,.15);
+  --elev-4: 0 2px 3px rgba(0,0,0,.3), 0 6px 10px 4px rgba(0,0,0,.15);
+  --elev-5: 0 4px 4px rgba(0,0,0,.3), 0 8px 12px 6px rgba(0,0,0,.15);
+
+  color-scheme: light;
+}
+:root[data-mode="dark"] { color-scheme: dark; }
+
+/* ============ M3 Typography ============ */
+.display-large  { font-size: 57px; line-height: 64px; font-weight: 400; letter-spacing: -0.25px; }
+.display-medium { font-size: 45px; line-height: 52px; font-weight: 400; }
+.display-small  { font-size: 36px; line-height: 44px; font-weight: 400; }
+.headline-large  { font-size: 32px; line-height: 40px; font-weight: 400; }
+.headline-medium { font-size: 28px; line-height: 36px; font-weight: 400; }
+.headline-small  { font-size: 24px; line-height: 32px; font-weight: 400; }
+.title-large  { font-size: 22px; line-height: 28px; font-weight: 400; }
+.title-medium { font-size: 16px; line-height: 24px; font-weight: 500; letter-spacing: 0.15px; }
+.title-small  { font-size: 14px; line-height: 20px; font-weight: 500; letter-spacing: 0.1px; }
+.body-large  { font-size: 16px; line-height: 24px; font-weight: 400; letter-spacing: 0.5px; }
+.body-medium { font-size: 14px; line-height: 20px; font-weight: 400; letter-spacing: 0.25px; }
+.body-small  { font-size: 12px; line-height: 16px; font-weight: 400; letter-spacing: 0.4px; }
+.label-large  { font-size: 14px; line-height: 20px; font-weight: 500; letter-spacing: 0.1px; }
+.label-medium { font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0.5px; }
+.label-small  { font-size: 11px; line-height: 16px; font-weight: 500; letter-spacing: 0.5px; }
+
+/* ============ Ripple ============ */
+.ripple-host { position: relative; overflow: hidden; }
+.ripple-host.ripple-unbounded { overflow: visible; }
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: currentColor;
+  opacity: 0.12;
+  transform: scale(0);
+  animation: ripple-grow 450ms var(--ease-standard) forwards;
+}
+.ripple.fading { transition: opacity 300ms linear; opacity: 0 !important; }
+@keyframes ripple-grow { to { transform: scale(1); } }
+
+/* State layer for hover (desktop niceness, matches M3 state layers) */
+.state-layer { position: relative; }
+.state-layer::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: currentColor; opacity: 0; transition: opacity 120ms linear;
+  pointer-events: none;
+}
+.state-layer:hover::after { opacity: 0.08; }
+.state-layer:active::after { opacity: 0; }
+
+/* ============ Scrollbars (hidden, like a device) ============ */
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { display: none; }
