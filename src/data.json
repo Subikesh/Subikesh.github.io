@@ -1,21 +1,33 @@
-﻿{
+{
   "meta": {
     "pageTitle": "Subikesh | Portfolio",
     "name": "Subikesh P S",
     "designation": "Software Engineer 2 - Android",
     "resumePdf": "Resume.pdf",
     "contactFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLScJizHy7OZI_rQ9L6iTb1lt2SIzrDNopmaaEb9HhzcB4F67uA/viewform?embedded=true",
-    "description": "Personal portfolio of Subikesh P S â€” Software Engineer 2 (Android) at Intuit, working on Kotlin Multiplatform, Jetpack Compose, and AI-powered experiences.",
+    "description": "Personal portfolio of Subikesh P S — Software Engineer 2 (Android) at Intuit, working on Kotlin Multiplatform, Jetpack Compose, and AI-powered experiences.",
     "social": [
-      { "label": "Github",   "url": "https://github.com/Subikesh",              "icon": "fa fa-github" },
-      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/subikeshps/",  "icon": "fa fa-linkedin" },
-      { "label": "Mail",     "url": "mailto:subikeshps@gmail.com",              "icon": "fa fa-envelope" }
+      {
+        "label": "Github",
+        "url": "https://github.com/Subikesh",
+        "icon": "fa fa-github"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/subikeshps/",
+        "icon": "fa fa-linkedin"
+      },
+      {
+        "label": "Mail",
+        "url": "mailto:subikeshps@gmail.com",
+        "icon": "fa fa-envelope"
+      }
     ]
   },
   "about": {
     "content": [
       "I am currently working as a Software Engineer 2 - Android at Intuit, building mobile experiences for TurboTax and QuickBooks customers. I completed my Bachelor's in SRM Easwari Engineering College majoring in Computer Science and Engineering. I love crafting performant, well-architected Android apps using Kotlin Multiplatform, Jetpack Compose, and Clean Architecture, and I enjoy exploring the intersection of mobile and AI.",
-      "I am always curious about the things I see and use, and I enjoy learning them. Lately, that curiosity has pulled me deeper into AI engineering â€” building RAG pipelines, working with vector databases, and shipping AI-powered features end to end. I like to work on projects out of my comfort zone so I can learn while building, and I am always looking forward to opportunities to grow my skills."
+      "I am always curious about the things I see and use, and I enjoy learning them. Lately, that curiosity has pulled me deeper into AI engineering — building RAG pipelines, working with vector databases, and shipping AI-powered features end to end. I like to work on projects out of my comfort zone so I can learn while building, and I am always looking forward to opportunities to grow my skills."
     ]
   },
   "projects": [
@@ -26,13 +38,25 @@
       "description": "A cross-platform AI news companion app that delivers daily briefings across 8 categories with follow-up conversational Q&A and source attribution.",
       "points": [
         "Built and shipped using Kotlin Multiplatform and Jetpack Compose, with AI-generated daily briefings and conversational Q&A backed by source attribution.",
-        "Implemented Clean Architecture with MVVM, Kotlin Coroutines and Flows for reactive state management, and Ktor for networking â€” with all chat data persisted on-device for user privacy.",
+        "Implemented Clean Architecture with MVVM, Kotlin Coroutines and Flows for reactive state management, and Ktor for networking — with all chat data persisted on-device for user privacy.",
         "Engineered a Django REST backend with a RAG pipeline using Gemini embeddings and a Qdrant vector database, enabling semantic search across daily articles to power context-aware AI responses."
       ],
-      "tags": ["Kotlin Multiplatform", "Jetpack Compose", "RAG", "Qdrant", "Django REST"],
+      "tags": [
+        "Kotlin Multiplatform",
+        "Jetpack Compose",
+        "RAG",
+        "Qdrant",
+        "Django REST"
+      ],
       "buttons": [
-        { "url": "https://play.google.com/store/apps/details?id=com.spacey.newsbuddy.android", "text": "Play Store" },
-        { "url": "https://newsbuddyapp.in/",                                                   "text": "Website" }
+        {
+          "url": "https://play.google.com/store/apps/details?id=com.spacey.newsbuddy.android",
+          "text": "Play Store"
+        },
+        {
+          "url": "https://newsbuddyapp.in/",
+          "text": "Website"
+        }
       ]
     },
     {
@@ -45,9 +69,16 @@
         "Used retrofit and room db for network and database calls",
         "Learned dependency injection using dagger along with many architectural patterns"
       ],
-      "tags": ["Android", "Kotlin", "Clean Architecture"],
+      "tags": [
+        "Android",
+        "Kotlin",
+        "Clean Architecture"
+      ],
       "buttons": [
-        { "url": "https://github.com/Subikesh/ECommerceApplication", "text": "Source code" }
+        {
+          "url": "https://github.com/Subikesh/ECommerceApplication",
+          "text": "Source code"
+        }
       ]
     },
     {
@@ -61,11 +92,25 @@
         "Created an Android app which consumes the hosted REST API for list, search and user login functionalities.",
         "Hosted it in python-anywhere with MySQL database as an open-source app"
       ],
-      "tags": ["Django", "Django-rest-framework", "CRUD", "PostgreSQL"],
+      "tags": [
+        "Django",
+        "Django-rest-framework",
+        "CRUD",
+        "PostgreSQL"
+      ],
       "buttons": [
-        { "url": "https://github.com/Subikesh/Code-Database",         "text": "Source code" },
-        { "url": "https://github.com/Subikesh/CodeDatabase_android",  "text": "Android Source code" },
-        { "url": "https://codedatabase.pythonanywhere.com/",          "text": "View Project" }
+        {
+          "url": "https://github.com/Subikesh/Code-Database",
+          "text": "Source code"
+        },
+        {
+          "url": "https://github.com/Subikesh/CodeDatabase_android",
+          "text": "Android Source code"
+        },
+        {
+          "url": "https://codedatabase.pythonanywhere.com/",
+          "text": "View Project"
+        }
       ]
     },
     {
@@ -73,10 +118,20 @@
       "image": "/images/digits.webp",
       "alt": "Digit recognizer",
       "description": "An app to predict hand-written digits drawn by user using deep learning. The project is done from scratch using numpy and pandas libraries in python.",
-      "tags": ["Django", "Neural Nets", "MNIST Classification"],
+      "tags": [
+        "Django",
+        "Neural Nets",
+        "MNIST Classification"
+      ],
       "buttons": [
-        { "url": "https://github.com/Subikesh/Digit-Recognition", "text": "Source code" },
-        { "url": "https://subikeshdigits.herokuapp.com/",         "text": "View Project" }
+        {
+          "url": "https://github.com/Subikesh/Digit-Recognition",
+          "text": "Source code"
+        },
+        {
+          "url": "https://subikeshdigits.herokuapp.com/",
+          "text": "View Project"
+        }
       ]
     },
     {
@@ -84,9 +139,17 @@
       "image": "/images/dentalstats.webp",
       "alt": "Dental Statistics",
       "description": "An application to give a neat GUI for inserting, updating and displaying the data graphically and generating a report from the data given from a dental hospital. The app is currently being used by SRM dental hospital for tracking patient records.",
-      "tags": ["Tkinter", "SQLite", "Report Generation", "Data visualization"],
+      "tags": [
+        "Tkinter",
+        "SQLite",
+        "Report Generation",
+        "Data visualization"
+      ],
       "buttons": [
-        { "url": "https://github.com/Subikesh/DentalDataStatictics", "text": "Source code" }
+        {
+          "url": "https://github.com/Subikesh/DentalDataStatictics",
+          "text": "Source code"
+        }
       ]
     },
     {
@@ -95,7 +158,10 @@
       "alt": "TicTacToe",
       "description": "The game tic-tac-toe for two player and single player - with AI created using minimax algorithm made using python.",
       "buttons": [
-        { "url": "https://github.com/Subikesh/Tic-Tac-Toe", "text": "Source code" }
+        {
+          "url": "https://github.com/Subikesh/Tic-Tac-Toe",
+          "text": "Source code"
+        }
       ]
     },
     {
@@ -104,7 +170,10 @@
       "alt": "minesweeper",
       "description": "A strategic single-player game to flag the mines in the board with the clues about neighboring mines. It is created using python in an object-oriented design.",
       "buttons": [
-        { "url": "https://github.com/Subikesh/Minesweeper", "text": "Source code" }
+        {
+          "url": "https://github.com/Subikesh/Minesweeper",
+          "text": "Source code"
+        }
       ]
     }
   ],
@@ -127,7 +196,7 @@
             {
               "title": "One Intuit Contact Us SDK",
               "ul": [
-                "Owned the Intuit-wide â€œContact Usâ€ mobile SDK, providing end-to-end support and maintenance for internal partner teams and ensuring code quality with peer reviews.",
+                "Owned the Intuit-wide “Contact Us” mobile SDK, providing end-to-end support and maintenance for internal partner teams and ensuring code quality with peer reviews.",
                 "Refactored the SDK to an MVI architecture to facilitate future Compose migration and implemented deeplinking, achieving a 7% increase in clickthrough rate.",
                 "Migrated chat experience by integrating a GenAI widget that bridges AI with HI for tax filing assistance."
               ]
@@ -192,7 +261,14 @@
             "Clean Architecture",
             "MVVM",
             "MVI",
-            { "title": "Dependency Injection", "ul": ["Dagger", "Hilt", "Koin"] }
+            {
+              "title": "Dependency Injection",
+              "ul": [
+                "Dagger",
+                "Hilt",
+                "Koin"
+              ]
+            }
           ]
         },
         {

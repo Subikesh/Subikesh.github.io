@@ -1,6 +1,8 @@
 :root {
-  --sb-h: 32px;   /* status bar */
-  --nav-h: 28px;  /* gesture nav area */
+  /* status bar / gesture nav heights fold in the device safe-area insets so the
+     fake system UI clears a real notch / home indicator (env() -> 0 on desktop). */
+  --sb-h: calc(32px + env(safe-area-inset-top, 0px));
+  --nav-h: calc(28px + env(safe-area-inset-bottom, 0px));
 }
 
 .device {
@@ -19,6 +21,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 18px 0 22px;
+  padding-top: env(safe-area-inset-top, 0px); /* keep clock/icons below the notch */
   z-index: 60;
   color: var(--md-on-surface);
   cursor: default;
@@ -34,6 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: env(safe-area-inset-bottom, 0px); /* lift the pill above the home indicator */
   z-index: 60;
   color: var(--md-on-surface);
   border: none;

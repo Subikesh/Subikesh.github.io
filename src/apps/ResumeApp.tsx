@@ -52,6 +52,9 @@ export function ResumeApp() {
             </div>
           ))}
         </div>
+
+        {/* clearance so the last card scrolls clear of the Download PDF FAB */}
+        <div aria-hidden="true" style={{ height: 72 }} />
       </div>
 
       <a

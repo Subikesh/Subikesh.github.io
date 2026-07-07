@@ -56,12 +56,19 @@
 .project-card .chip-row { margin-top: 12px; }
 
 .pd-hero {
+  display: flex;
+  justify-content: center;
+}
+.pd-hero img {
+  max-width: min(100%, 460px);
+  max-height: 60vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   border-radius: 20px;
-  overflow: hidden;
   box-shadow: var(--elev-1);
   background: var(--md-surface-container-high);
 }
-.pd-hero img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 .pd-title { font-size: 26px; line-height: 34px; font-weight: 440; padding: 20px 4px 6px; }
 .pd-desc { font-size: 16px; line-height: 25px; color: var(--md-on-surface); padding: 12px 4px; }
 .pd-points { padding: 4px; display: flex; flex-direction: column; gap: 12px; }
